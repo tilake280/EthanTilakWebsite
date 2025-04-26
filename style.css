@@ -4,16 +4,16 @@ body {
 
 }
 p {
-        color: black;
+        color: rgb(255,178,102);
         text-align: left;
-    }
+}
 
-    h1 {
+h1 {
         text-align: center;
-    }
+}
 
 
-    img {
+img {
         display: block;
         margin: auto;
-    }
+}
