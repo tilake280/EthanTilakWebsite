@@ -1,16 +1,16 @@
 body {
-    background-color: rgb(102, 190, 255);
+    background-color: rgb(255,178,102);
     font-family: sans-serif;
 
 }
 p {
-    color: rgb(255,178,102);
+    color: rgb(102, 190, 255);
     text-align: left;
 }
 
 h1 {
     text-align: center;
-    color: rgb(255,178,102);
+    color: rgb(102, 190, 255);
 }
 
 
