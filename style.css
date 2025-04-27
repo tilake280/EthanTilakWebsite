@@ -11,12 +11,16 @@ p {
 h1 {
     text-align: center;
     color: rgb(255, 203, 5);
+    size: 90px;
 }
 
 
 img {
         display: block;
         margin: auto;
+    height: 80px;
+    width: auto;
+    
 }
 ul{
     color: rgb(255,255,255);
