@@ -1,7 +1,7 @@
 body {
     background-color: rgb(0, 39, 76);
-    font-family: sans-serif;
-
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url("techbackground.webp")
 }
 
 p {

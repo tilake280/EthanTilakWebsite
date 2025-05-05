@@ -1,0 +1,50 @@
+body {
+    background-color: rgb(0, 39, 76);
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url("techbackground.webp")
+}
+
+p {
+    color: rgb(255, 255, 255);
+    text-align: left;
+    font-size: 40px;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 90px;
+}
+
+h2 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 55px;
+}
+
+
+
+ul {
+    color: rgb(255, 255, 255);
+}
+
+.icon-row {
+    text-align: center;
+}
+
+.menu-options {
+    text-align: right;
+    font-size: 40px
+}
+
+.menu-options a {
+    color: white !important;
+    display: inline-block;
+    transition: .2s;
+    margin-right: 20px;
+}
+
+.menu-options a:hover {
+    transform: translate(-10px)
+        /*transform:translateY(xpx); moves it up/down*/
+}
