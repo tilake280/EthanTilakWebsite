@@ -46,17 +46,29 @@ ul {
     text-align: center;
 }
 
-.icon-row2 a {
-    transition: 0.2s;
+.imgWrap {
+    position: relative;
     display: inline-block;
+    margin-right: -4px;
 }
 
-.icon-row2 a:hover {
-    transform: translateY(40px);
-    opacity: 0.5;
+.imgWrap a {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    transition: .2s;
 }
 
+.imgWrap a:hover {
+    transform: translateY(50px);
+    opacity: .2;
+}
 
+.bText {
+    position: absolute;
+    top: -12%;
+    z-index: 1;
+}
 
 .menu-options {
     text-align: right;
@@ -64,13 +76,28 @@ ul {
 }
 
 .menu-options a {
-    color: white !important;
+    color: white;
     display: inline-block;
     transition: .2s;
     margin-right: 25px;
 }
 
 .menu-options a:hover {
-    transform: translate(-15px)
-        /*transform:translateY(xpx); moves it up/down*/
+    transform: translate(-15px);
+    /*transform:translateY(xpx); moves it up/down*/
+    opacity: 0.5;
+}
+
+
+.titleJump {
+    text-align: center;
+}
+
+.titleJump h1 {
+    transition: .2s;
+    display: inline-block;
+}
+
+.titleJump h1:hover {
+    transform: translateY(10px);
 }

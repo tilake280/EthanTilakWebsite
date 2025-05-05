@@ -5,19 +5,19 @@ body {
 }
 
 p {
-    color: rgb(255, 203, 5);
+    color: rgb(255, 255, 255);
     text-align: left;
     font-size: 40px;
 }
 
 h1 {
     text-align: center;
-    color: rgb(255, 203, 5);
+    color: rgb(255, 255, 255);
     font-size: 90px;
 }
 
 h2 {
-    color: rgb(255, 203, 5);
+    color: rgb(255, 255, 255);
     text-align: center;
     font-size: 55px;
 }
@@ -27,6 +27,8 @@ h2 {
 ul {
     color: rgb(255, 255, 255);
 }
+
+
 
 .icon-row {
     text-align: center;
