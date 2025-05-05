@@ -31,3 +31,20 @@ ul {
 .icon-row {
     text-align: center;
 }
+
+.menu-options {
+    text-align: right;
+    font-size: 40px
+}
+
+.menu-options a {
+    color: white !important;
+    display: inline-block;
+    transition: .2s;
+    margin-right: 25px;
+}
+
+.menu-options a:hover {
+    transform: translate(-15px)
+        /*transform:translateY(xpx); moves it up/down*/
+}
