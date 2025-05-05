@@ -41,10 +41,10 @@ ul {
     color: white !important;
     display: inline-block;
     transition: .2s;
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .menu-options a:hover {
-    transform: translate(-10px)
+    transform: translate(-15px)
         /*transform:translateY(xpx); moves it up/down*/
 }
