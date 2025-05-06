@@ -1,0 +1,64 @@
+body {
+    background-image: url(rif/retroBackground.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*keeps background in place*/
+    background-attachment: fixed;
+}
+
+img {
+    border-radius: 20%;
+    border: 10px solid lightblue;
+    height: 200px;
+}
+
+.next {
+    display: flex;
+    align-items: center;
+    gap: 200px;
+
+}
+
+p {
+    font-size: 50px;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: 10px solid lightblue;
+    padding: 200px 15px;
+    background-color: rgb(162, 195, 206);
+    opacity: .92;
+    border-radius: 20%;
+    text-align: center;
+}
+
+.menu-options {
+    text-align: right;
+    font-size: 40px
+}
+
+.menu-options a {
+    color: white;
+    display: inline-block;
+    transition: .2s;
+    margin-right: 25px;
+}
+
+.menu-options a:hover {
+    transform: translate(-15px);
+    /*transform:translateY(xpx); moves it up/down*/
+    opacity: 0.5;
+}
+
+.icon-row {
+    text-align: center;
+}
+
+.icon-row a {
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.icon-row a:hover {
+    transform: translateY(-10px);
+    opacity: 0.5;
+}

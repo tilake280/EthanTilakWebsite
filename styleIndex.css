@@ -101,3 +101,7 @@ ul {
 .titleJump h1:hover {
     transform: translateY(10px);
 }
+
+.secret {
+    text-align: right;
+}

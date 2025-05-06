@@ -34,6 +34,16 @@ ul {
     text-align: center;
 }
 
+.icon-row a {
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.icon-row a:hover {
+    transform: translateY(-10px);
+    opacity: 0.5;
+}
+
 .menu-options {
     text-align: right;
     font-size: 40px
