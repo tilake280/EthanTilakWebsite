@@ -1,13 +1,14 @@
 body {
     background-color: rgb(0, 39, 76);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-image: url("techbackground.webp")
 }
+
 
 p {
     color: rgb(255, 255, 255);
     text-align: left;
-    font-size: 40px;
+    font-size: 50px;
 }
 
 h1 {
@@ -26,6 +27,7 @@ h2 {
 
 ul {
     color: rgb(255, 255, 255);
+    font-size: 25px;
 }
 
 
@@ -59,4 +61,13 @@ ul {
 .menu-options a:hover {
     transform: translate(-15px)
         /*transform:translateY(xpx); moves it up/down*/
+}
+
+/*should only be temp fix, will not work on phones or larger monitors*/
+.prof img {
+    position: absolute;
+    right: 100px;
+    top: 443px;
+    height: 800px;
+    border-radius: 50%;
 }
