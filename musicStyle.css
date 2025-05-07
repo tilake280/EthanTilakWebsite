@@ -1,8 +1,61 @@
 body {
     background: url(rif/musicPaint.jpg);
+    background-position-y: fixed;
+    background-repeat: no-repeat;
+}
+
+.menu-options {
+    text-align: right;
+    font-size: 40px
+}
+
+.menu-options a {
+    color: rgb(0, 0, 0);
+    display: inline-block;
+    transition: .2s;
+    margin-right: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.menu-options a:hover {
+    transform: translate(-15px);
+    /*transform:translateY(xpx); moves it up/down*/
+    opacity: 0.5;
 }
 
 audio {
     display: block;
     margin: 0 auto;
+}
+
+.cent {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
+.right {
+    text-align: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
+.left {
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
+.icon-row {
+    text-align: center;
+}
+
+.icon-row a {
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.icon-row a:hover {
+    transform: translateY(-10px);
+    opacity: 0.5;
 }
