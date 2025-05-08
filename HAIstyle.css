@@ -19,6 +19,15 @@ img {
 
 }
 
+h1 {
+    color: rgb(255, 255, 255);
+    font-size: 100px;
+    margin-left: 150px;
+    margin-right: 100px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 0px;
+}
+
 p {
     font-size: 50px;
     color: white;
@@ -28,12 +37,12 @@ p {
     background-color: rgb(162, 195, 206);
     opacity: .92;
     border-radius: 20%;
-    text-align: center;
+    text-align: justify;
 }
 
 .menu-options {
     text-align: right;
-    font-size: 40px
+    font-size: 40px;
 }
 
 .menu-options a {
@@ -41,6 +50,7 @@ p {
     display: inline-block;
     transition: .2s;
     margin-right: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .menu-options a:hover {
