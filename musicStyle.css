@@ -23,6 +23,15 @@ body {
     opacity: 0.5;
 }
 
+h1 {
+    color: rgb(0, 0, 0);
+    font-size: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
 audio {
     display: block;
     margin: 0 auto;
