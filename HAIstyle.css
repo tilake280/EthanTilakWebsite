@@ -8,7 +8,7 @@ body {
 
 img {
     border-radius: 20%;
-    border: 10px solid lightblue;
+    border: .3vw solid lightblue;
     height: 20vw;
 }
 
@@ -21,7 +21,7 @@ img {
 
 h1 {
     color: rgb(255, 255, 255);
-    font-size: 100px;
+    font-size: 4vw;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: left;
 }
@@ -30,8 +30,7 @@ p {
     font-size: 50px;
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    border: 10px solid lightblue;
-    padding: 200px 15px;
+    border: .3vw solid lightblue;
     background-color: rgb(162, 195, 206);
     opacity: .92;
     border-radius: 20%;
@@ -53,8 +52,8 @@ p {
 .menu-options a {
     color: white;
     transition: .2s;
-    margin-right: 25px;
-    font-size: 50px;
+    margin-right: 1.5vw;
+    font-size: 2vw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
