@@ -9,23 +9,21 @@ body {
 img {
     border-radius: 20%;
     border: 10px solid lightblue;
-    height: 200px;
+    height: 20vw;
 }
 
 .next {
     display: flex;
     align-items: center;
-    gap: 200px;
+    gap: 10vw;
 
 }
 
 h1 {
     color: rgb(255, 255, 255);
     font-size: 100px;
-    margin-left: 150px;
-    margin-right: 100px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 0px;
+    text-align: left;
 }
 
 p {
@@ -40,18 +38,26 @@ p {
     text-align: justify;
 }
 
+.lined_up {
+    display: flex;
+    align-items: center;
+}
+
+
+
 .menu-options {
-    text-align: right;
-    font-size: 40px;
+    display: flex;
+    margin-left: auto;
 }
 
 .menu-options a {
     color: white;
-    display: inline-block;
     transition: .2s;
     margin-right: 25px;
+    font-size: 50px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
 
 .menu-options a:hover {
     transform: translate(-15px);
