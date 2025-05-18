@@ -66,8 +66,10 @@ ul {
 /*should only be temp fix, will not work on phones or larger monitors*/
 .prof img {
     position: absolute;
-    right: 100px;
-    top: 443px;
     height: 800px;
     border-radius: 50%;
+}
+
+.info {
+    display: flex;
 }
