@@ -48,7 +48,7 @@ ul {
 
 .menu-options {
     text-align: right;
-    font-size: 40px
+    font-size: 40px;
 }
 
 .menu-options a {
@@ -59,11 +59,11 @@ ul {
 }
 
 .menu-options a:hover {
-    transform: translate(-15px)
-        /*transform:translateY(xpx); moves it up/down*/
+    transform: translate(-15px);
+    opacity: 0.5;
 }
 
-/*should only be temp fix, will not work on phones or larger monitors*/
+
 .prof img {
     position: absolute;
     height: 800px;
