@@ -51,7 +51,7 @@ ul {
 .imgWrap {
     position: relative;
     display: inline-block;
-    margin-right: -4px;
+    margin-right: -10px;
 }
 
 .imgWrap a {
