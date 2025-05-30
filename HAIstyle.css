@@ -59,7 +59,7 @@ p {
 
 
 .menu-options a:hover {
-    transform: translate(-15px);
+    transform: translate(-.7vw);
     /*transform:translateY(xpx); moves it up/down*/
     opacity: 0.5;
 }
