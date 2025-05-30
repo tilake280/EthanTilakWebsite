@@ -13,13 +13,13 @@ p {
 h1 {
     text-align: center;
     color: rgb(255, 255, 255);
-    font-size: 90px;
+    font-size: 3vw;
 }
 
 h2 {
     color: rgb(255, 255, 255);
     text-align: center;
-    font-size: 55px;
+    font-size: 2vw;
 }
 
 #header {
@@ -66,26 +66,31 @@ ul {
     opacity: .7;
 }
 
+.imgWrap img {
+    width: 20vw;
+}
+
 .bText {
     position: absolute;
-    top: -12%;
+    top: -13.5%;
     z-index: 1;
+    font-size: 2.3vw;
 }
 
 .menu-options {
     text-align: right;
-    font-size: 40px
+    font-size: 1.5vw
 }
 
 .menu-options a {
     color: white;
     display: inline-block;
     transition: .2s;
-    margin-right: 25px;
+    margin-right: .5vw;
 }
 
 .menu-options a:hover {
-    transform: translate(-15px);
+    transform: translate(-.5vw);
     /*transform:translateY(xpx); moves it up/down*/
     opacity: 0.5;
 }
