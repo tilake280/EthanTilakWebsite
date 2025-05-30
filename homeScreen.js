@@ -13,7 +13,7 @@ async function headType() {
             document.getElementById("header").innerHTML = l;
         }
         let k = 0;
-        while (k < 7) {
+        while (k < 5) {
             document.getElementById("header").innerHTML = l.substring(0, l.length - 1) + " ";
             await sleep(500);
             document.getElementById("header").innerHTML = l;
@@ -25,7 +25,14 @@ async function headType() {
             l = l.substring(0, j) + "|";
             document.getElementById("header").innerHTML = l;
         }
-        await sleep(100);
+        k = 0;
+        while (k < 3) {
+            document.getElementById("header").innerHTML = l.substring(0, l.length - 1) + " ";
+            await sleep(500);
+            document.getElementById("header").innerHTML = l;
+            await sleep(500)
+            k++;
+        }
     }
 }
 
