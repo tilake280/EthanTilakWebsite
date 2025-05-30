@@ -62,7 +62,7 @@ ul {
 }
 
 .imgWrap a:hover {
-    transform: translateY(50px);
+    transform: translateY(2vw);
     opacity: .7;
 }
 
@@ -72,7 +72,7 @@ ul {
 
 .bText {
     position: absolute;
-    top: -13.5%;
+    top: -13%;
     z-index: 1;
     font-size: 2.3vw;
 }
