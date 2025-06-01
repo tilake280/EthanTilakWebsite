@@ -8,26 +8,26 @@ body {
 p {
     color: rgb(255, 255, 255);
     text-align: left;
-    font-size: 50px;
+    font-size: 3vw;
 }
 
 h1 {
     text-align: center;
     color: rgb(255, 255, 255);
-    font-size: 90px;
+    font-size: 4vw;
 }
 
 h2 {
     color: rgb(255, 255, 255);
     text-align: center;
-    font-size: 55px;
+    font-size: 3vw;
 }
 
 
 
 ul {
     color: rgb(255, 255, 255);
-    font-size: 25px;
+    font-size: 2vw;
 }
 
 
@@ -48,25 +48,25 @@ ul {
 
 .menu-options {
     text-align: right;
-    font-size: 40px;
+    font-size: 2vw;
 }
 
 .menu-options a {
     color: white !important;
     display: inline-block;
     transition: .2s;
-    margin-right: 25px;
+    margin-right: 1vw;
 }
 
 .menu-options a:hover {
-    transform: translate(-15px);
+    transform: translate(-.5vw);
     opacity: 0.5;
 }
 
 
 .prof img {
     position: right;
-    height: 800px;
+    height: 50VW;
     border-radius: 50%;
 }
 
