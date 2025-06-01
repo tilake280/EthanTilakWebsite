@@ -8,7 +8,7 @@ async function headType() {
     for (i of lines) {
         let l = "";
         for (let j = 0; j < i.length; j++) {
-            await sleep(150);
+            await sleep(50);
             l = l.substring(0, l.length - 1) + i[j] + "|";
             document.getElementById("header").innerHTML = l;
         }
@@ -21,7 +21,7 @@ async function headType() {
             k++;
         }
         for (let j = i.length - 1; j >= 0; j--) {
-            await sleep(150);
+            await sleep(50);
             l = l.substring(0, j) + "|";
             document.getElementById("header").innerHTML = l;
         }
