@@ -65,7 +65,7 @@ ul {
 
 
 .prof img {
-
+    position: right;
     height: 800px;
     border-radius: 50%;
 }
