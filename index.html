@@ -2,273 +2,76 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Ethan Tilak</title>
-  <link rel="icon" href="rif/icon.png">
-  
-  <style>
-    /* ==========================================
-       YOUR ORIGINAL CSS (REPAIRED FOR CANVAS)
-       ========================================== */
-    body {
-        /* Made transparent so the canvas can show through from behind */
-        background: transparent !important;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-
-    /* Fixed layer settings for the moving background canvas */
-    #indexBgCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        background-color: rgb(0, 39, 76); /* Your original blue remains the base background color */
-        pointer-events: none;
-    }
-
-    p {
-        color: rgb(255, 255, 255);
-        text-align: left;
-        font-size: 3vw;
-    }
-
-    h1 {
-        text-align: center;
-        color: rgb(255, 255, 255);
-        font-size: 4vw;
-    }
-
-    h2 {
-        color: rgb(255, 255, 255);
-        text-align: center;
-        font-size: 3vw;
-    }
-
-    ul {
-        color: rgb(255, 255, 255);
-        font-size: 2vw;
-    }
-
-    .icon-row {
-        text-align: center;
-    }
-
-    .icon-row a {
-        transition: 0.2s;
-        display: inline-block;
-    }
-
-    .icon-row a:hover {
-        transform: translateY(-10px);
-        opacity: 0.5;
-    }
-
-    .menu-options {
-        text-align: right;
-        font-size: 2vw;
-    }
-
-    .menu-options a {
-        color: white !important;
-        display: inline-block;
-        transition: .2s;
-        margin-right: 1vw;
-    }
-
-    .menu-options a:hover {
-        transform: translate(-.5vw);
-        opacity: 0.5;
-    }
-
-    .prof img {
-        position: right;
-        height: 50VW;
-        border-radius: 50%;
-    }
-
-    .info {
-        display: flex;
-    }
-  </style>
+  <title>Ethan Tilak's Website</title>
+  <link rel="stylesheet" href="styleIndex.css">
+  <link rel="icon" href="rif/icon.png" style="border-radius: 50%;">
 </head>
   
 <body>
 
-  <canvas id="indexBgCanvas"></canvas>
-
-  <div class="menu-options">
-    <a href="index.html">Home</a>
-    <a href="HAI.html">Old Tech</a>
+<div class = "menu-options">
+    <a href = index.html>Home</a>
+    <a href = HAI.html>Old Tech</a>
     <a href="music.html">Music</a>
     <a href="projects.html">Projects</a>
-    <a href="aboutMe.html">About Me</a>
-  </div>
+    <a href = aboutMe.html>About Me</a>
+</div>
 
-  <h1 style="margin-bottom: -10px;">About: Me</h1>
-  <br>
-  <h2>A University of Michigan Student Studying <br>Computer Science and Economics</h2>
-  <br>
+<div class="titleJump">
+    <h1 style="text-align: center;margin-top: 30px;margin-bottom: 10px;">Ethan Tilak's Homepage</h1>
+</div>
 
-  <div class="info">
-    <div>
-      <p>Cumulative GPA: 3.982</p>
-      <br>
-      <p>Relevant Courses and Grades</p>
-      <ul>
-        <li>Computer Science Courses</li>
-        <ul>
-          <li>Data Structures and Algorithms (EECS 281) - A+</li>
-          <li>Intro to Computer Security (EECS 388) - A</li>
-          <li>Discrete Math (EECS 203) - A</li>
-          <li>Programming and Introductory Data Structures (EECS 280) - A</li>
-          <li>Fundamentals of Scientific Computing in R (Compfor 133) - A</li>
-        </ul>
-        <br>
-        <li>Economics Courses</li>
-        <ul>
-          <li>Multivariable & Vector Calculus (Math 215) - A</li>
-          <li>Intermediate Microeconomic Theory (Econ 401) - A</li>
-          <li>Introductory Microeconomic Theory (Econ 101) - A+</li>
-          <li>Introductory Macroeconomic Theory (Econ 102) - A</li>
-        </ul>
-      </ul>
-      <br>
+<h2 id="header">Here's a bunch of stuff about me!:</h2>
+
+<br>
+
+<div class = "icon-row2">
+    <div class = "imgWrap">
+        <p class="bText" style="left:23%">Old Tech</p>
+        <a href = HAI.html>
+            <img src="ps2s.jpg">
+        </a>
     </div>
 
-    <div class="prof">
-      <img src="Ethan_Tilak_Headshot.png" alt="My Headshot!">
+    <div class = "imgWrap">
+        <p class="bText" style="left:34%">Music</p>
+        <a href = music.html>
+            <img src="rif/musicIcon.png">
+        </a>
     </div>
-  </div>
 
-  <br>
-  <p>Programming Languages in Order of Proficiency</p>
-  <ul>
-    <li>C++</li>
-    <li>C</li>
-    <li>Python</li>
-    <li>SQL</li>
-    <li>R Studio (Shiny, Tidyverse, etc.)</li>
-    <li>Java</li>
-    <li>HTML</li>
-    <li>CSS</li>
-  </ul>
+    <div class = "imgWrap">
+        <p class="bText" style="left:23%">Projects</p>
+        <a href = projects.html>
+            <img src="rif/codingSplash.jpg">
+        </a>
+    </div>
 
-  <p>そして、N4/N3の日本語がはなせます。</p>
-  <p style="text-align: center; margin-bottom: 4px;">Let's Connect!</p>
+    <div class = "imgWrap">
+        <p class="bText" style="left:21%">Academics</p>
+        <a href = aboutMe.html>
+            <img src="tempHomeMenuImg.jpg">
+        </a>
+    </div>
 
-  <div class="icon-row">
-    <a href="https://www.linkedin.com/in/ethan-tilak"><img src="linkedinIcon.png" alt="LI Icon" width="40" height="40"></a>
-    <a href="https://www.instagram.com/ethan_tilak1"><img src="instagramIcon.webp" alt="Instagram Icon" width="40" height="40"></a>
-    <a href="mailto:ethantilak@gmail.com"><img src="rif/Gmail_icon_.webp" alt="Gmail Icon" width="40" height="35"></a>
-    <a href="https://github.com/tilake280"><img src="rif/githubLogo.png" alt="githubLogo" width="40" height="40"></a>
-  </div>
+    
+</div>
 
-  <script>
-    const canvas = document.getElementById('indexBgCanvas');
-    const ctx = canvas.getContext('2d');
+<br>
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+<div class="secret">
+    <a href="secretEvaPg.html">Eva</a>
+</div>
 
-    const particles = [];
-    const particleCount = 65;
-    const symbols = ['0', '1', '$', '📈', '📉', 'f(x)', 'λ', 'Δ'];
 
-    const mouse = { x: null, y: null, radius: 140 };
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
+<p style="text-align: center; margin-bottom: 4px;margin-bottom: 15px;">Let's Connect!</p>
+<div class = "icon-row">
+<a href = https://www.linkedin.com/in/ethan-tilak><img src="linkedinIcon.png" alt = "LI Icon" width="40" height ="40"></a>
+<a href = https://www.instagram.com/ethan_tilak1><img src="instagramIcon.webp" alt = "Instagram Icon" width="40" height ="40"></a>
+<a href="mailto:ethantilak@gmail.com"><img src="rif/Gmail_icon_.webp" alt="Gmail Icon" width="40" height="40"></a>
+<a href="https://github.com/tilake280"><img src="rif/githubLogo.png" alt="githubLogo" width="40" height="40"></a>
 
-    class DataNode {
-      constructor() {
-        this.reset();
-        this.y = Math.random() * canvas.height; 
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = -20;
-        this.speedY = Math.random() * 0.8 + 0.4;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.text = symbols[Math.floor(Math.random() * symbols.length)];
-        this.fontSize = Math.floor(Math.random() * 5) + 12;
-        this.opacity = Math.random() * 0.35 + 0.15;
-      }
-
-      update() {
-        this.y += this.speedY;
-        this.x += this.speedX;
-
-        if (mouse.x !== null && mouse.y !== null) {
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let distance = Math.hypot(dx, dy);
-          if (distance < mouse.radius) {
-            let force = (mouse.radius - distance) / mouse.radius;
-            this.x -= (dx / distance) * force * 2.5;
-            this.y -= (dy / distance) * force * 2.5;
-          }
-        }
-
-        if (this.y > canvas.height || this.x < -10 || this.x > canvas.width + 10) {
-          this.reset();
-        }
-      }
-
-      draw() {
-        ctx.fillStyle = `rgba(173, 216, 230, ${this.opacity})`; 
-        ctx.font = `${this.fontSize}px monospace`;
-        ctx.fillText(this.text, this.x, this.y);
-      }
-    }
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new DataNode());
-    }
-
-    function animate() {
-      // Wipes previous configurations cleanly to maintain zero trail blur
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.fillStyle = 'rgb(0, 39, 76)'; 
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Render crisp data connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          let dx = particles[i].x - particles[j].x;
-          let dy = particles[i].y - particles[j].y;
-          let dist = Math.hypot(dx, dy);
-          if (dist < 110) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(255, 203, 5, ${0.12 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
-        }
-      }
-
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
-
+<script src="homeScreen.js"></script>
+</div>
 </body>
 </html>
