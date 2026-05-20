@@ -41,7 +41,7 @@
   class DataNode {
     constructor() {
       this.reset();
-      this.y = Math.random() * canvas.height; // Distribute evenly across screen on startup
+      this.y = Math.random() * canvas.height; 
     }
 
     reset() {
@@ -58,7 +58,6 @@
       this.y += this.speedY;
       this.x += this.speedX;
 
-      // Interaction loop: Push particles away smoothly if mouse gets close
       if (mouse.x !== null && mouse.y !== null) {
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
@@ -70,30 +69,28 @@
         }
       }
 
-      // Recycle data nodes once they float off-screen
       if (this.y > canvas.height || this.x < -10 || this.x > canvas.width + 10) {
         this.reset();
       }
     }
 
     draw() {
-      ctx.fillStyle = `rgba(173, 216, 230, ${this.opacity})`; // Faint UMich Ice Blue
+      ctx.fillStyle = `rgba(173, 216, 230, ${this.opacity})`; 
       ctx.font = `${this.fontSize}px monospace`;
       ctx.fillText(this.text, this.x, this.y);
     }
   }
 
-  // Populate data matrix
   for (let i = 0; i < particleCount; i++) {
     particles.push(new DataNode());
   }
 
   function animate() {
-    // Subtle alpha blending creates a clean digital trailing blur effect
-    ctx.fillStyle = 'rgba(0, 39, 76, 0.2)'; 
+    // CHANGED: Using full opacity here completely removes the trailing/blur effect
+    ctx.fillStyle = 'rgb(0, 39, 76)'; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Algorithmic Line Pipelines: Draw faint bonds between close variables
+    // Algorithmic Line Pipelines
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         let dx = particles[i].x - particles[j].x;
@@ -103,7 +100,6 @@
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          // Blends to UMich Maize gold when proximity forms strong structures
           ctx.strokeStyle = `rgba(255, 203, 5, ${0.12 * (1 - dist / 110)})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
