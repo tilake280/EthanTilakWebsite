@@ -8,7 +8,118 @@
 </head>
   
 <body>
+<canvas id="indexBgCanvas"></canvas>
 
+
+<script>
+  const canvas = document.getElementById('indexBgCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // CS & Econ themed data stream units
+  const particles = [];
+  const particleCount = 65;
+  const symbols = ['0', '1', '$', '📈', '📉', 'f(x)', 'λ', 'Δ'];
+
+  // Track cursor movement for mouse interactivity
+  const mouse = { x: null, y: null, radius: 140 };
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  window.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  class DataNode {
+    constructor() {
+      this.reset();
+      this.y = Math.random() * canvas.height; // Distribute evenly across screen on startup
+    }
+
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = -20;
+      this.speedY = Math.random() * 0.8 + 0.4;
+      this.speedX = (Math.random() - 0.5) * 0.4;
+      this.text = symbols[Math.floor(Math.random() * symbols.length)];
+      this.fontSize = Math.floor(Math.random() * 5) + 12;
+      this.opacity = Math.random() * 0.35 + 0.15;
+    }
+
+    update() {
+      this.y += this.speedY;
+      this.x += this.speedX;
+
+      // Interaction loop: Push particles away smoothly if mouse gets close
+      if (mouse.x !== null && mouse.y !== null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.hypot(dx, dy);
+        if (distance < mouse.radius) {
+          let force = (mouse.radius - distance) / mouse.radius;
+          this.x -= (dx / distance) * force * 2.5;
+          this.y -= (dy / distance) * force * 2.5;
+        }
+      }
+
+      // Recycle data nodes once they float off-screen
+      if (this.y > canvas.height || this.x < -10 || this.x > canvas.width + 10) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      ctx.fillStyle = `rgba(173, 216, 230, ${this.opacity})`; // Faint UMich Ice Blue
+      ctx.font = `${this.fontSize}px monospace`;
+      ctx.fillText(this.text, this.x, this.y);
+    }
+  }
+
+  // Populate data matrix
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new DataNode());
+  }
+
+  function animate() {
+    // Subtle alpha blending creates a clean digital trailing blur effect
+    ctx.fillStyle = 'rgba(0, 39, 76, 0.2)'; 
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Algorithmic Line Pipelines: Draw faint bonds between close variables
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        let dx = particles[i].x - particles[j].x;
+        let dy = particles[i].y - particles[j].y;
+        let dist = Math.hypot(dx, dy);
+        if (dist < 110) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          // Blends to UMich Maize gold when proximity forms strong structures
+          ctx.strokeStyle = `rgba(255, 203, 5, ${0.12 * (1 - dist / 110)})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
 <div class = "menu-options">
     <a href = index.html>Home</a>
     <a href = HAI.html>Old Tech</a>
