@@ -1,59 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="projectsStyle.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Ethan Tilak</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="rif/icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0f1a;
+      --surface: #111827;
+      --border: rgba(255,255,255,0.07);
+      --accent: #4fffb0;
+      --accent2: #4fc3ff;
+      --text: #e8edf5;
+      --muted: #7a8ba0;
+      --tag-bg: rgba(79,255,176,0.08);
+      --tag-border: rgba(79,255,176,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      background-image: url('rif/codingBackgroundImage (1).webp');
+      background-repeat: repeat-y;
+      background-size: 100%;
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 26, 0.82);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10,15,26,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 56px;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover, nav a.active { color: var(--accent); }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .page-header {
+      padding: 5rem 0 3.5rem;
+    }
+
+    .page-header-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .page-header h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .page-header h1 span { color: var(--accent); }
+
+    .page-header-sub {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0.5rem 0 4rem;
+    }
+
+    .project {
+      margin-bottom: 5rem;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .project.visible { opacity: 1; transform: translateY(0); }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .project-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .tag.blue {
+      color: var(--accent2);
+      background: rgba(79,195,255,0.08);
+      border-color: rgba(79,195,255,0.25);
+    }
+
+    .project-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+
+    .project-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #a8b8cc;
+      font-weight: 300;
+      max-width: 780px;
+      margin-bottom: 2rem;
+    }
+
+    .project-body strong { color: var(--text); font-weight: 500; }
+
+    .stat-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.9rem 1.4rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 2px; }
+
+    .stat-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .stat-sep { width: 1px; height: 32px; background: var(--border); }
+
+    .slideshow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .slides-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .slide {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      padding: 1rem;
+    }
+
+    .slide img {
+      max-height: 520px;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 3px;
+      display: block;
+    }
+
+    .slide-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.2rem;
+      border-top: 1px solid var(--border);
+      background: rgba(10,15,26,0.5);
+    }
+
+    .slide-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.45rem 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .slide-counter {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .slide-dots { display: flex; gap: 6px; align-items: center; }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+
+    .result-img-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-img-wrap img { max-width: 100%; border-radius: 3px; display: block; }
+
+    .contact-strip {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 3rem 0 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .contact-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .icon-row { display: flex; gap: 1.2rem; align-items: center; }
+
+    .icon-row a {
+      display: inline-flex;
+      opacity: 0.65;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .icon-row a:hover { opacity: 1; transform: translateY(-4px); }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; gap: 1.2rem; }
+      .wrap { padding: 0 1.2rem; }
+      .page-header { padding: 3rem 0 2rem; }
+    }
+  </style>
 </head>
 <body>
 
-<div class = "menu-options">
-    <a href = index.html>Home</a>
-    <a href = HAI.html>Old Tech</a>
-    <a href="music.html">Music</a>
-    <a href="projects.html">Projects</a>
-    <a href = aboutMe.html>About Me</a>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="HAI.html">Old Tech</a>
+  <a href="music.html">Music</a>
+  <a href="projects.html" class="active">Projects</a>
+  <a href="aboutMe.html">About Me</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="page-header">
+    <p class="page-header-eyebrow">Portfolio</p>
+    <h1>My <span>Projects</span></h1>
+    <p class="page-header-sub">Things I've built — in class, out of curiosity, and everything in between.</p>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- PROJECT 1 -->
+  <article class="project">
+    <div class="project-meta">
+      <span class="project-number">01 /</span>
+      <span class="tag">R · Shiny</span>
+      <span class="tag">Data Visualization</span>
+      <span class="tag">Tidyverse</span>
+    </div>
+    <h2 class="project-title">India–Pakistan Literacy<br>Rate Comparison</h2>
+    <p class="project-body">
+      Built for my <strong>Scientific Computing in R</strong> course, this project lets users
+      interactively compare literacy rates across decades in India and Pakistan.
+      I used <strong>Shiny</strong> to build an interactive map powered by <strong>dplyr</strong>
+      and several other tidyverse libraries — the result is a dynamic, filterable
+      visualization that reveals how literacy has evolved in both countries over time.
+    </p>
+
+    <div class="slideshow">
+      <div class="slides-track" id="track-1">
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-001.jpg" alt="Slide 1"></div>
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-002.jpg" alt="Slide 2"></div>
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-003.jpg" alt="Slide 3"></div>
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-004.jpg" alt="Slide 4"></div>
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-005.jpg" alt="Slide 5"></div>
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-006.jpg" alt="Slide 6"></div>
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-007.jpg" alt="Slide 7"></div>
+        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-008.jpg" alt="Slide 8"></div>
+      </div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide()">← Prev</button>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <div class="slide-dots" id="dots-1"></div>
+          <span class="slide-counter" id="counter-1">1 / 8</span>
+        </div>
+        <button class="slide-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 2 -->
+  <article class="project">
+    <div class="project-meta">
+      <span class="project-number">02 /</span>
+      <span class="tag blue">C++</span>
+      <span class="tag blue">Machine Learning</span>
+      <span class="tag blue">NLP</span>
+    </div>
+    <h2 class="project-title">ML Tag Classifier<br>in C++</h2>
+    <p class="project-body">
+      For my <strong>Programming and Introductory Data Structures</strong> course (EECS 280),
+      I built a machine learning algorithm in C++ that predicts the tag attached to a forum post.
+      It uses a <strong>bag-of-words</strong> technique — tallying word frequencies across posts with known tags
+      using maps, computing a <strong>log-probability</strong> score per word per tag, then summing those scores
+      across every word in a new post to identify its most likely tag.
+    </p>
+
+    <div class="stat-bar">
+      <div class="stat">
+        <span class="stat-value">87.08%</span>
+        <span class="stat-label">Accuracy</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-value">11,300</span>
+        <span class="stat-label">Training posts</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-value">~3,000</span>
+        <span class="stat-label">Test posts</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-value">C++</span>
+        <span class="stat-label">Language</span>
+      </div>
+    </div>
+
+    <div class="result-img-wrap">
+      <img src="rif/ml-classifier-success-rate.png" alt="ML classifier success rate output">
+    </div>
+  </article>
+
 </div>
 
-<h1>Projects</h1>
-
-<div class="titleAlign">
-<p>I my scientific computing in R class, I created this project that allows users to
-     compare literacy rates through the decades in India and Pakistan.  I created an
-      interactive map using numerous R libraries, including dplyr, shiny, and other
-       tidyverse features.</p>
+<div class="wrap">
+  <div class="contact-strip">
+    <span class="contact-label">Let's connect</span>
+    <div class="icon-row">
+      <a href="https://www.linkedin.com/in/ethan-tilak"><img src="linkedinIcon.png" alt="LinkedIn" width="40" height="40"></a>
+      <a href="https://www.instagram.com/ethan_tilak1"><img src="instagramIcon.webp" alt="Instagram" width="40" height="40"></a>
+      <a href="mailto:ethantilak@gmail.com"><img src="rif/Gmail_icon_.webp" alt="Gmail" width="40" height="35"></a>
+      <a href="https://github.com/tilake280"><img src="rif/githubLogo.png" alt="GitHub" width="40" height="40"></a>
+    </div>
+  </div>
 </div>
 
-<div class="inlineImg">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-001.jpg" alt="I-P Img 1">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-002.jpg" alt="">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-003.jpg" alt="">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-004.jpg" alt="">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-005.jpg" alt="">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-006.jpg" alt="">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-007.jpg" alt="">
-    <img src="IPimages/india-pakistan-literacy-rate-presentation-page-008.jpg" alt="">
-</div>
+<script>
+  let current = 0;
+  const total = 8;
 
-<p>For my programming and intro data structures class, I created a machine learning algroithm in C++ that predicted the tag attatched to comments.
-    The algorithm was used a <q>bag of words</q> technique that summed the frequency of words in posts with certain tags using maps, calculated the 
-    log-probability score of the word being used in posts with that tag, and then adding up all of the words' log-probability scores 
-    in each post in the new data to predict what tag was associated with the post.
-    <br>
-    <br>
-    Using a sample size of 11300 posts, the algorithm predicted the correct corresponding tag on 87.08% of the time on nearly 3000 original posts.  The results are shown below:</p>
-<div style="text-align: center;">
-    <img style="width: 80vw;" src="rif/ml-classifier-success-rate.png">
-</div>
-<br><br>
+  const dotsContainer = document.getElementById('dots-1');
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(d);
+  }
 
-<div class = "icon-row">
-    <a href = https://www.linkedin.com/in/ethan-tilak><img src="linkedinIcon.png" alt = "LI Icon" width="40" height ="40"></a>
-    <a href = https://www.instagram.com/ethan_tilak1><img src="instagramIcon.webp" alt = "Instagram Icon" width="40" height ="40"></a>
-    <a href="mailto:ethantilak@gmail.com"><img src="rif/Gmail_icon_.webp" alt="Gmail Icon" width="40" height="35"></a>
-    <a href="https://github.com/tilake280"><img src="rif/githubLogo.png" alt="githubLogo" width="40" height="40"></a>
-</div>
+  function update() {
+    document.getElementById('track-1').style.transform = `translateX(-${current * 100}%)`;
+    document.getElementById('counter-1').textContent = `${current + 1} / ${total}`;
+    document.querySelectorAll('#dots-1 .dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function nextSlide() { current = (current + 1) % total; update(); }
+  function prevSlide() { current = (current - 1 + total) % total; update(); }
+  function goTo(i) { current = i; update(); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.project').forEach(el => observer.observe(el));
+</script>
 </body>
-
 </html>
