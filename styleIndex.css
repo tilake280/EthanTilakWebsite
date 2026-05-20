@@ -112,3 +112,23 @@ ul {
 .secret {
     text-align: right;
 }
+
+/* Full-Screen Moving Background Layout */
+#indexBgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Mandates it stays layered beneath your content buttons/text */
+    background-color: #00274C; /* Solid UMich Blue baseline fallback */
+    pointer-events: none; /* Allows mouse tracking to pass through seamlessly to elements underneath */
+}
+
+/* Optimization to guarantee your original home content layer loads crisply */
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
