@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ethan's Hobbies & Interests - Old Tech</title>
+  <title>Ethan Tilak - About Me</title>
   
   <style>
-    /* --- CSS STYLES --- */
+    /* --- MODERN CSS STYLES --- */
     * {
         box-sizing: border-box;
         margin: 0;
@@ -14,162 +14,207 @@
     }
 
     body {
-        background-color: #0a0f1e; /* Deep retro tech navy fallback */
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', Arial, sans-serif;
+        background-color: #00274C; /* Official University of Michigan Blue */
+        font-family: 'Lucida Sans', 'Lucida Grande', Geneva, Verdana, sans-serif;
         color: white;
-        padding: 20px;
         min-height: 100vh;
         overflow-x: hidden;
+        padding: 20px;
     }
 
-    /* Background Canvas */
-    #retroCanvas {
+    /* Interconnected Canvas Background */
+    #networkCanvas {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
         z-index: -1;
+        pointer-events: none; /* Allows interacting with text over canvas */
     }
 
-    /* Interactive Control Button */
-    .bg-control {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(47, 117, 179, 0.8);
-        border: 2px solid lightblue;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-family: monospace;
-        z-index: 100;
-        transition: all 0.2s ease;
-    }
-    .bg-control:hover {
-        background: lightblue;
-        color: #0a0f1e;
-        box-shadow: 0 0 10px lightblue;
-    }
-
-    /* Header & Navigation */
-    .header-container {
+    /* Top Navigation Header */
+    .menu-options {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        justify-content: flex-end;
         gap: 20px;
-        margin-bottom: 50px;
         padding: 20px 5%;
         position: relative;
         z-index: 10;
     }
 
-    h1 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: clamp(2rem, 4vw, 3.5rem);
-        text-shadow: 0 0 10px rgba(173, 216, 230, 0.6);
-    }
-
-    .menu-options {
-        display: flex;
-        gap: 20px;
-    }
-
     .menu-options a {
         color: white;
         text-decoration: none;
-        font-size: clamp(1rem, 1.5vw, 1.3rem);
-        transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
         font-weight: bold;
+        transition: transform 0.2s, opacity 0.2s, color 0.2s;
     }
 
-    .menu-options a:hover, 
+    .menu-options a:hover,
     .menu-options a.active {
-        color: lightblue;
-        text-shadow: 0 0 8px rgba(173, 216, 230, 0.8);
+        color: #ffcb05; /* UMich Maize accent color */
         transform: translateY(-2px);
     }
 
-    /* Main Content Layout */
-    .content-container {
-        max-width: 1100px;
+    /* Hero Headings */
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 10px;
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+        font-size: clamp(1.2rem, 2.5vw, 2rem);
+        font-weight: 300;
+        color: #e0e0e0;
+        line-height: 1.4;
+    }
+
+    /* Layout Split Container */
+    .profile-dashboard {
+        max-width: 1200px;
         margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 40px;
+        align-items: start;
+        padding: 0 20px;
+    }
+
+    /* Glassmorphism Card Style */
+    .card {
+        background-color: rgba(0, 39, 76, 0.85);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+    }
+
+    .gpa-banner {
+        font-size: clamp(1.3rem, 2vw, 1.8rem);
+        font-weight: bold;
+        color: #ffcb05;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+    }
+
+    .section-title {
+        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+        margin-bottom: 15px;
+        color: #add8e6;
+    }
+
+    /* Nested Academic Lists */
+    .course-tree {
+        list-style-type: none;
+    }
+
+    .course-tree > li {
+        font-weight: bold;
+        margin-top: 15px;
+        font-size: 1.1rem;
+        color: #fff;
+    }
+
+    .course-tree ul {
+        list-style-type: square;
+        margin-left: 25px;
+        margin-top: 5px;
+    }
+
+    .course-tree li li {
+        font-weight: normal;
+        font-size: 1rem;
+        margin-bottom: 6px;
+        color: #d1e6ff;
+    }
+
+    /* Right Column Profile Setup */
+    .profile-sidebar {
         display: flex;
         flex-direction: column;
-        gap: 80px;
-        position: relative;
-        z-index: 10;
-    }
-
-    /* Scroll Reveal Baseline */
-    .next {
-        display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 40px;
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        gap: 25px;
     }
 
-    /* Triggered via JS on scroll */
-    .next.visible {
-        opacity: 1;
-        transform: translateY(0);
+    .avatar-container {
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 6px solid #ffcb05;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
-    .next:nth-child(even) {
-        flex-direction: row-reverse;
-    }
-
-    /* Images */
-    .next img {
-        border-radius: 12px;
-        border: 4px solid lightblue;
-        width: 40%;
-        max-width: 350px;
-        height: auto;
+    .avatar-container img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        box-shadow: 0 0 15px rgba(173, 216, 230, 0.3);
-        transition: transform 0.3s ease;
     }
 
-    .next img:hover {
-        transform: scale(1.03);
+    /* Programming Languages Layout */
+    .languages-grid {
+        width: 100%;
     }
 
-    .next .pixel-gif {
-        background-color: rgb(47, 117, 179);
+    .languages-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+        list-style: none;
+        margin-top: 10px;
     }
 
-    /* Text Containers */
-    .text-box {
-        width: 55%;
-        background-color: rgba(47, 117, 179, 0.85);
-        border: 4px solid lightblue;
-        border-radius: 16px;
-        padding: 30px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-        backdrop-filter: blur(4px);
-    }
-
-    .text-box p {
-        font-size: clamp(1rem, 1.2vw, 1.25rem);
-        line-height: 1.6;
-    }
-
-    /* Footer / Social Icons */
-    .icon-row {
+    .languages-list li {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 8px 12px;
+        border-radius: 8px;
         text-align: center;
-        margin-top: 80px;
+        font-size: 0.95rem;
+        transition: background 0.2s;
+    }
+
+    .languages-list li:hover {
+        background: rgba(255, 255, 205, 0.15);
+        border-color: #ffcb05;
+    }
+
+    .japanese-text {
+        font-size: 1.1rem;
+        text-align: center;
+        margin-top: 10px;
+        color: #c4e1ff;
+        font-style: italic;
+    }
+
+    /* Footer & Social Icons */
+    footer {
+        text-align: center;
+        margin-top: 60px;
         padding-bottom: 40px;
+    }
+
+    footer p {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .icon-row {
         display: flex;
         justify-content: center;
-        gap: 25px;
-        position: relative;
-        z-index: 10;
+        gap: 20px;
     }
 
     .icon-row a {
@@ -177,31 +222,25 @@
     }
 
     .icon-row img {
-        height: 50px;
-        width: 50px;
-        border: 0;
         border-radius: 8px;
-        object-fit: contain;
+        transition: all 0.2s;
     }
 
     .icon-row a:hover {
-        transform: translateY(-8px);
-        filter: drop-shadow(0 0 8px rgba(173, 216, 230, 0.8));
+        transform: translateY(-5px);
+        filter: drop-shadow(0 4px 8px rgba(255, 203, 5, 0.5));
     }
 
-    /* Responsiveness */
-    @media (max-width: 768px) {
-        .header-container {
-            flex-direction: column;
-            text-align: center;
+    /* Responsive Adaptation */
+    @media (max-width: 850px) {
+        .profile-dashboard {
+            grid-template-columns: 1fr;
         }
-        .next, .next:nth-child(even) {
-            flex-direction: column;
-            gap: 20px;
+        .profile-sidebar {
+            grid-row: 1; /* Moves photo to the top on mobile layouts */
         }
-        .next img, .text-box {
-            width: 100%;
-            max-width: 100%;
+        .menu-options {
+            justify-content: center;
         }
     }
   </style>
@@ -209,65 +248,85 @@
   
 <body>
 
-  <canvas id="retroCanvas"></canvas>
-  <button class="bg-control" id="toggleBg">Freeze Matrix</button>
+  <canvas id="networkCanvas"></canvas>
 
-  <header class="header-container">
-    <h1>Old Tech</h1>
-    <nav class="menu-options">
-      <a href="index.html">Home</a>
-      <a href="HAI.html" class="active">Old Tech</a>
-      <a href="music.html">Music</a>
-      <a href="projects.html">Projects</a>
-      <a href="aboutMe.html">About Me</a>
-    </nav>
+  <nav class="menu-options">
+    <a href="index.html">Home</a>
+    <a href="HAI.html">Old Tech</a>
+    <a href="music.html">Music</a>
+    <a href="projects.html">Projects</a>
+    <a href="aboutMe.html" class="active">About Me</a>
+  </nav>
+
+  <header>
+    <h1>About: Me</h1>
+    <h2>A University of Michigan Student Studying<br>Computer Science and Economics</h2>
   </header>
 
-  <main class="content-container">
+  <main class="profile-dashboard">
     
-    <section class="next">
-      <img src="rif/retroWall.jpeg" alt="Prized wall of retro games">
-      <div class="text-box">
-        <p>This is my prized wall of old(er) games. I personally love the old jewel cases of the PlayStation 1 games because I was so used to the DVD cases used by the Wii and PS2 games. I have beat a majority of these games, but mostly in high school because I've been too busy at college.</p>
-      </div>
-    </section>
-
-    <section class="next">
-      <img src="rif/ps2sWeezer.jpeg" alt="Ethan's PlayStation 2 consoles">
-      <div class="text-box">
-        <p>I bought my own PS2 before my uncle gave me his, but the one I bought didn't output the color red and his had a faulty disc drive. I was able to switch the disc drives and changed the disc reader, and it worked for a while, but it didn't play PlayStation 1 games for some reason, so I just bought the white one and it still works well.</p>
-      </div>
-    </section>
+    <section class="card">
+      <div class="gpa-banner">Cumulative GPA: 3.982</div>
       
-    <section class="next">
-      <img src="rif/ffJapaneseGames.jpeg" alt="Japanese Final Fantasy games collection">
-      <div class="text-box">
-        <p>This is my collection of Japanese Final Fantasy imports. I love collecting these older editions because the artwork variations and packaging formats are distinct from the releases we standardly saw nearby growing up.</p>
-      </div>
+      <h3 class="section-title">Relevant Courses and Grades</h3>
+      <ul class="course-tree">
+        <li>Computer Science Courses
+          <ul>
+            <li>Data Structures and Algorithms (EECS 281) - A+</li>
+            <li>Intro to Computer Security (EECS 388) - A</li>
+            <li>Discrete Math (EECS 203) - A</li>
+            <li>Programming and Introductory Data Structures (EECS 280) - A</li>
+            <li>Fundamentals of Scientific Computing in R (Compfor 133) - A</li>
+          </ul>
+        </li>
+        <li>Economics Courses
+          <ul>
+            <li>Multivariable & Vector Calculus (Math 215) - A</li>
+            <li>Intermediate Microeconomic Theory (Econ 401) - A</li>
+            <li>Introductory Microeconomic Theory (Econ 101) - A+</li>
+            <li>Introductory Macroeconomic Theory (Econ 102) - A</li>
+          </ul>
+        </li>
+      </ul>
     </section>
 
-    <section class="next">
-      <img class="pixel-gif" src="rif/eyeball.gif" alt="Pixel art eyeball animation">
-      <div class="text-box">
-        <p>I am working on a pixel-art game as a passion project. I hope to be able to share it someday!</p>
+    <section class="profile-sidebar">
+      <div class="avatar-container">
+        <img src="Ethan_Tilak_Headshot.png" alt="Ethan Tilak Headshot Image">
+      </div>
+
+      <div class="card languages-grid">
+        <h3 class="section-title">Languages & Technologies</h3>
+        <ul class="languages-list">
+          <li>C++</li>
+          <li>C</li>
+          <li>Python</li>
+          <li>SQL</li>
+          <li>R Studio</li>
+          <li>Java</li>
+          <li>HTML</li>
+          <li>CSS</li>
+        </ul>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0 15px 0;">
+        <p class="japanese-text">そして、N4/N3の日本語がはなせます。</p>
       </div>
     </section>
 
   </main>
 
-  <footer class="icon-row">
-    <a href="https://www.linkedin.com/in/ethan-tilak" target="_blank" rel="noopener"><img src="linkedinIcon.png" alt="LinkedIn"></a>
-    <a href="https://www.instagram.com/ethan_tilak1" target="_blank" rel="noopener"><img src="instagramIcon.webp" alt="Instagram"></a>
-    <a href="mailto:ethantilak@gmail.com"><img src="rif/Gmail_icon_.webp" alt="Gmail"></a>
-    <a href="https://github.com/tilake280" target="_blank" rel="noopener"><img src="rif/githubLogo.png" alt="GitHub"></a>
+  <footer>
+    <p>Let's Connect!</p>
+    <div class="icon-row">
+      <a href="https://www.linkedin.com/in/ethan-tilak" target="_blank" rel="noopener"><img src="linkedinIcon.png" alt="LinkedIn" width="40" height="40"></a>
+      <a href="https://www.instagram.com/ethan_tilak1" target="_blank" rel="noopener"><img src="instagramIcon.webp" alt="Instagram" width="40" height="40"></a>
+      <a href="mailto:ethantilak@gmail.com"><img src="rif/Gmail_icon_.webp" alt="Gmail" width="40" height="35"></a>
+      <a href="https://github.com/tilake280" target="_blank" rel="noopener"><img src="rif/githubLogo.png" alt="GitHub" width="40" height="40"></a>
+    </div>
   </footer>
 
   <script>
-    // 1. MATRIX BINARY STREAMING BACKGROUND EFFECT
-    const canvas = document.getElementById('retroCanvas');
+    const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
-    let animationInterval;
-    let isRunning = true;
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -276,63 +335,58 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const alphabet = "01010101XØ🖳💾🕹️🖵+=-*";
-    const fontSize = 14;
-    let columns = canvas.width / fontSize;
-    let rainDrops = Array(Math.floor(columns)).fill(1);
-
-    function drawMatrix() {
-        ctx.fillStyle = 'rgba(10, 15, 30, 0.1)'; // Gives a slight motion trail
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = 'rgba(173, 216, 230, 0.15)'; // Light blue matrix font color
-        ctx.font = fontSize + 'px monospace';
-
-        for(let i = 0; i < rainDrops.length; i++) {
-            const text = alphabet[Math.floor(Math.random() * alphabet.length)];
-            ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-            
-            if(rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                rainDrops[i] = 0;
-            }
-            rainDrops[i]++;
-        }
-    }
+    // Create algorithmic / market nodes
+    const nodes = [];
+    const nodeCount = 45;
     
-    // Start animation loop
-    animationInterval = setInterval(drawMatrix, 33);
-
-    // Toggle Button functionality to pause background streams
-    document.getElementById('toggleBg').addEventListener('click', function() {
-        if(isRunning) {
-            clearInterval(animationInterval);
-            this.textContent = "Run Matrix";
-        } else {
-            animationInterval = setInterval(drawMatrix, 33);
-            this.textContent = "Freeze Matrix";
-        }
-        isRunning = !isRunning;
-    });
-
-    // 2. SCROLL REVEAL FUNCTIONALITY
-    const sections = document.querySelectorAll('.next');
-
-    function revealSections() {
-        const triggerBottom = window.innerHeight * 0.85;
-        
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            if(sectionTop < triggerBottom) {
-                section.classList.add('visible');
-            } else {
-                section.classList.remove('visible');
-            }
+    for (let i = 0; i < nodeCount; i++) {
+        nodes.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+            radius: Math.random() * 2 + 1.5
         });
     }
 
-    window.addEventListener('scroll', revealSections);
-    // Trigger on load check to reveal top content immediately
-    revealSections();
+    function animate() {
+        // Keeps background fixed to a deep UMich blue aesthetic
+        ctx.fillStyle = '#00274C';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Update positions & draw points
+        nodes.forEach(node => {
+            node.x += node.vx;
+            node.y += node.vy;
+
+            // Simple screen boundary checks
+            if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 203, 5, 0.35)'; // Faint Maize points
+            ctx.fill();
+        });
+
+        // Draw connections between proximate nodes to visualize structured pipelines
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    // Proximity mapping changes opacity
+                    ctx.strokeStyle = `rgba(173, 216, 230, ${0.15 * (1 - dist / 120)})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
   </script>
 
 </body>
