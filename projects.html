@@ -322,162 +322,44 @@
 
     .icon-row a:hover { opacity: 1; transform: translateY(-4px); }
 
-    @media (max-width: 600px) {
-      nav { padding: 0 1.2rem; gap: 1.2rem; }
-      .wrap { padding: 0 1.2rem; }
-      .page-header { padding: 3rem 0 2rem; }
+    /* FEATURED PROJECT */
+    .project-featured {
+      margin-bottom: 5rem;
+      background: var(--surface);
+      border: 1px solid rgba(79,255,176,0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
-  </style>
-</head>
-<body>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="HAI.html">Old Tech</a>
-  <a href="music.html">Music</a>
-  <a href="projects.html" class="active">Projects</a>
-  <a href="aboutMe.html">About Me</a>
-</nav>
+    .project-featured.visible { opacity: 1; transform: translateY(0); }
 
-<div class="wrap">
+    .featured-banner {
+      background: rgba(79,255,176,0.07);
+      border-bottom: 1px solid rgba(79,255,176,0.15);
+      padding: 0.55rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
 
-  <header class="page-header">
-    <p class="page-header-eyebrow">Portfolio</p>
-    <h1>My <span>Projects</span></h1>
-    <p class="page-header-sub">Things I've built — in class, out of curiosity, and everything in between.</p>
-  </header>
+    .featured-banner-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
 
-  <div class="divider"></div>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.85); }
+    }
 
-  <!-- PROJECT 1 -->
-  <article class="project">
-    <div class="project-meta">
-      <span class="project-number">01 /</span>
-      <span class="tag">R · Shiny</span>
-      <span class="tag">Data Visualization</span>
-      <span class="tag">Tidyverse</span>
-    </div>
-    <h2 class="project-title">India–Pakistan Literacy<br>Rate Comparison</h2>
-    <p class="project-body">
-      Built for my <strong>Scientific Computing in R</strong> course, this project lets users
-      interactively compare literacy rates across decades in India and Pakistan.
-      I used <strong>Shiny</strong> to build an interactive map powered by <strong>dplyr</strong>
-      and several other tidyverse libraries — the result is a dynamic, filterable
-      visualization that reveals how literacy has evolved in both countries over time.
-    </p>
-
-    <div class="slideshow">
-      <div class="slides-track" id="track-1">
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-001.jpg" alt="Slide 1"></div>
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-002.jpg" alt="Slide 2"></div>
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-003.jpg" alt="Slide 3"></div>
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-004.jpg" alt="Slide 4"></div>
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-005.jpg" alt="Slide 5"></div>
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-006.jpg" alt="Slide 6"></div>
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-007.jpg" alt="Slide 7"></div>
-        <div class="slide"><img src="IPimages/india-pakistan-literacy-rate-presentation-page-008.jpg" alt="Slide 8"></div>
-      </div>
-      <div class="slide-controls">
-        <button class="slide-btn" onclick="prevSlide()">← Prev</button>
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <div class="slide-dots" id="dots-1"></div>
-          <span class="slide-counter" id="counter-1">1 / 7</span>
-        </div>
-        <button class="slide-btn" onclick="nextSlide()">Next →</button>
-      </div>
-    </div>
-  </article>
-
-  <!-- PROJECT 2 -->
-  <article class="project">
-    <div class="project-meta">
-      <span class="project-number">02 /</span>
-      <span class="tag blue">C++</span>
-      <span class="tag blue">Machine Learning</span>
-      <span class="tag blue">NLP</span>
-    </div>
-    <h2 class="project-title">ML Tag Classifier<br>in C++</h2>
-    <p class="project-body">
-      For my <strong>Programming and Introductory Data Structures</strong> course (EECS 280),
-      I built a machine learning algorithm in C++ that predicts the tag attached to a forum post.
-      It uses a <strong>bag-of-words</strong> technique — tallying word frequencies across posts with known tags
-      using maps, computing a <strong>log-probability</strong> score per word per tag, then summing those scores
-      across every word in a new post to identify its most likely tag.
-    </p>
-
-    <div class="stat-bar">
-      <div class="stat">
-        <span class="stat-value">87.08%</span>
-        <span class="stat-label">Accuracy</span>
-      </div>
-      <div class="stat-sep"></div>
-      <div class="stat">
-        <span class="stat-value">11,300</span>
-        <span class="stat-label">Training posts</span>
-      </div>
-      <div class="stat-sep"></div>
-      <div class="stat">
-        <span class="stat-value">~3,000</span>
-        <span class="stat-label">Test posts</span>
-      </div>
-      <div class="stat-sep"></div>
-      <div class="stat">
-        <span class="stat-value">C++</span>
-        <span class="stat-label">Language</span>
-      </div>
-    </div>
-
-    <div class="result-img-wrap">
-      <img src="rif/ml-classifier-success-rate.png" alt="ML classifier success rate output">
-    </div>
-  </article>
-
-</div>
-
-<div class="wrap">
-  <div class="contact-strip">
-    <span class="contact-label">Let's connect</span>
-    <div class="icon-row">
-      <a href="https://www.linkedin.com/in/ethan-tilak"><img src="linkedinIcon.png" alt="LinkedIn" width="40" height="40"></a>
-      <a href="https://www.instagram.com/ethan_tilak1"><img src="instagramIcon.webp" alt="Instagram" width="40" height="40"></a>
-      <a href="mailto:ethantilak@gmail.com"><img src="rif/Gmail_icon_.webp" alt="Gmail" width="40" height="35"></a>
-      <a href="https://github.com/tilake280"><img src="rif/githubLogo.png" alt="GitHub" width="40" height="40"></a>
-    </div>
-  </div>
-</div>
-
-<script>
-  let current = 0;
-  const total = 7;
-
-  const dotsContainer = document.getElementById('dots-1');
-  for (let i = 0; i < total; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(d);
-  }
-
-  function update() {
-    document.getElementById('track-1').style.transform = `translateX(-${current * 100}%)`;
-    document.getElementById('counter-1').textContent = `${current + 1} / ${total}`;
-    document.querySelectorAll('#dots-1 .dot').forEach((d, i) => d.classList.toggle('active', i === current));
-  }
-
-  function nextSlide() { current = (current + 1) % total; update(); }
-  function prevSlide() { current = (current - 1 + total) % total; update(); }
-  function goTo(i) { current = i; update(); }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') nextSlide();
-    if (e.key === 'ArrowLeft') prevSlide();
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.project').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+    .featured-banner-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
