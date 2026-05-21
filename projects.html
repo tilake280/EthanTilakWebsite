@@ -322,10 +322,197 @@
 
     .icon-row a:hover { opacity: 1; transform: translateY(-4px); }
 
+    /* FEATURED PROJECT */
+    .project-featured {
+      margin-bottom: 5rem;
+      background: var(--surface);
+      border: 1px solid rgba(79,255,176,0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .project-featured.visible { opacity: 1; transform: translateY(0); }
+
+    .featured-banner {
+      background: rgba(79,255,176,0.07);
+      border-bottom: 1px solid rgba(79,255,176,0.15);
+      padding: 0.55rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .featured-banner-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .featured-banner-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .featured-body { padding: 2.2rem 2rem 2rem; }
+
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 2rem 0;
+      background: #0d1424;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    .pipeline-step {
+      flex: 1;
+      min-width: 120px;
+      padding: 1rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .pipeline-step:last-child { border-right: none; }
+
+    .pipeline-step::after {
+      content: '→';
+      position: absolute;
+      right: -9px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: var(--muted);
+      z-index: 2;
+      background: #0d1424;
+      padding: 2px 1px;
+    }
+
+    .pipeline-step:last-child::after { display: none; }
+
+    .pipeline-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--accent);
+      opacity: 0.6;
+      letter-spacing: 0.1em;
+    }
+
+    .pipeline-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .pipeline-sub {
+      font-size: 0.68rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.8rem;
+    }
+
+    .tech-chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.07em;
+      color: #a8b8cc;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .resume-bullet {
+      margin-top: 1.8rem;
+      padding: 1rem 1.2rem;
+      background: rgba(79,195,255,0.05);
+      border-left: 2px solid var(--accent2);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .resume-bullet-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.4rem;
+    }
+
+    .resume-bullet-text {
+      font-size: 0.88rem;
+      color: #a8b8cc;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .sentinel-launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: #000;
+      font-family: 'Space Mono', monospace;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-decoration: none;
+      padding: .65rem 1.4rem;
+      border-radius: 3px;
+      transition: background .2s, transform .15s;
+    }
+    .sentinel-launch-btn:hover { background: #80ffe0; transform: translateY(-2px); }
+
+    .sentinel-gh-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-decoration: none;
+      padding: .65rem 1.2rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      transition: border-color .2s, color .2s;
+    }
+    .sentinel-gh-btn:hover { border-color: var(--accent); color: var(--accent); }
+
     @media (max-width: 600px) {
       nav { padding: 0 1.2rem; gap: 1.2rem; }
       .wrap { padding: 0 1.2rem; }
       .page-header { padding: 3rem 0 2rem; }
+      .featured-body { padding: 1.4rem 1.2rem; }
+      .pipeline { flex-direction: column; }
+      .pipeline-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .pipeline-step::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -11px; transform: translateX(-50%); }
+      .pipeline-step:last-child { border-bottom: none; }
     }
   </style>
 </head>
@@ -348,6 +535,81 @@
   </header>
 
   <div class="divider"></div>
+
+  <!-- FEATURED PROJECT -->
+  <article class="project-featured">
+    <div class="featured-banner">
+      <div class="featured-banner-dot"></div>
+      <span class="featured-banner-text">Featured Project</span>
+      <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted)">EECS 388 · Security</span>
+    </div>
+    <div class="featured-body">
+      <div class="project-meta">
+        <span class="project-number">00 /</span>
+        <span class="tag">Static Analysis</span>
+        <span class="tag">Claude API</span>
+        <span class="tag blue">Security</span>
+        <span class="tag blue">AST Parsing</span>
+      </div>
+      <h2 class="project-title">SENTINEL.AI — Security<br>Code Auditor</h2>
+      <p class="project-body">
+        A fully working AI-assisted security auditor that scans GitHub repos, uploaded files, or pasted code for
+        vulnerabilities across all major languages. Combines a <strong>15-pattern static analysis engine</strong>
+        (SQL injection, XSS, command injection, buffer overflows, hardcoded secrets, and more) with
+        <strong>Claude AI</strong> to confirm findings, generate real exploit scenarios, propose secure patches,
+        and produce GitHub-style inline review comments — all ranked by severity and confidence.
+      </p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <span class="pipeline-num">01</span>
+          <span class="pipeline-label">Parse Source</span>
+          <span class="pipeline-sub">GitHub API · file upload · paste</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-num">02</span>
+          <span class="pipeline-label">Static Analysis</span>
+          <span class="pipeline-sub">15 vuln classes · regex + heuristics</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-num">03</span>
+          <span class="pipeline-label">Claude Audit</span>
+          <span class="pipeline-sub">confirm · exploit · patch · confidence</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-num">04</span>
+          <span class="pipeline-label">Severity Rank</span>
+          <span class="pipeline-sub">Critical / High / Medium / Low</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-num">05</span>
+          <span class="pipeline-label">Export Report</span>
+          <span class="pipeline-sub">GitHub-style comments · Markdown</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:1rem;margin-top:1.8rem;flex-wrap:wrap">
+        <a href="sentinel.html" class="sentinel-launch-btn">⚡ Launch SENTINEL.AI</a>
+        <a href="https://github.com/tilake280" class="sentinel-gh-btn" target="_blank">↗ View on GitHub</a>
+      </div>
+
+      <div class="tech-row">
+        <span class="tech-chip">JavaScript</span>
+        <span class="tech-chip">Claude API</span>
+        <span class="tech-chip">Static Analysis</span>
+        <span class="tech-chip">GitHub REST API</span>
+        <span class="tech-chip">AST Heuristics</span>
+        <span class="tech-chip">Python · C/C++ · Java · Go · JS · Ruby</span>
+        <span class="tech-chip">CWE Mapping</span>
+        <span class="tech-chip">EECS 388</span>
+      </div>
+
+      <div class="resume-bullet">
+        <div class="resume-bullet-label">Resume bullet</div>
+        <div class="resume-bullet-text">Built an AI-assisted static analysis pipeline that identified insecure patterns across 15 vulnerability classes and generated AI-powered remediation suggestions for large codebases using Claude API.</div>
+      </div>
+    </div>
+  </article>
 
   <!-- PROJECT 1 -->
   <article class="project">
@@ -381,7 +643,7 @@
         <button class="slide-btn" onclick="prevSlide()">← Prev</button>
         <div style="display:flex;align-items:center;gap:1rem;">
           <div class="slide-dots" id="dots-1"></div>
-          <span class="slide-counter" id="counter-1">1 / 7</span>
+          <span class="slide-counter" id="counter-1">1 / 8</span>
         </div>
         <button class="slide-btn" onclick="nextSlide()">Next →</button>
       </div>
@@ -448,7 +710,7 @@
 
 <script>
   let current = 0;
-  const total = 7;
+  const total = 8;
 
   const dotsContainer = document.getElementById('dots-1');
   for (let i = 0; i < total; i++) {
@@ -477,7 +739,7 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.project').forEach(el => observer.observe(el));
+  document.querySelectorAll('.project, .project-featured').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
