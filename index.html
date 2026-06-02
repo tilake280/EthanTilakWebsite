@@ -175,7 +175,13 @@
     requestAnimationFrame(animate);
   }
   animate();
-  if (window.location.search.includes('project=shiny')) document.querySelector('.project').scrollIntoView({ behavior: 'smooth' });
+  window.addEventListener('load', () => {
+  if (window.location.search.includes('project=shiny')) {
+    setTimeout(() => {
+      document.querySelector('.project').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300); // 300ms delay lets the page finish loading first
+  }
+});
 </script>  
 </body>
 </html>
