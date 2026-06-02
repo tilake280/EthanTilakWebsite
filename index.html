@@ -175,6 +175,7 @@
     requestAnimationFrame(animate);
   }
   animate();
+  if (window.location.search.includes('project=shiny')) document.querySelector('.project').scrollIntoView({ behavior: 'smooth' });
 </script>  
 </body>
 </html>
