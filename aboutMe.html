@@ -1,689 +1,336 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ethan Tilak - About Me</title>
-  
-  <style>
-    /* --- MODERN CSS STYLES --- */
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me — Ethan Tilak</title>
+<link rel="icon" href="assets/icons/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-        background-color: #00274C; /* Official University of Michigan Blue */
-        font-family: 'Lucida Sans', 'Lucida Grande', Geneva, Verdana, sans-serif;
-        color: white;
-        min-height: 100vh;
-        overflow-x: hidden;
-        padding: 20px;
-    }
+:root {
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --fg: #16151a;
+  --dim: #6b6a72;
+  --body: #3d3c45;
+  --line: rgba(0,0,0,0.14);
+  --accent: #00274c;
+}
 
-    /* Interconnected Canvas Background */
-    #networkCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        pointer-events: none; /* Allows interacting with text over canvas */
-    }
+body {
+  font-family: var(--sans);
+  font-feature-settings: 'cv05' 1, 'ss03' 1;
+  -webkit-font-smoothing: antialiased;
+  background: #faf8f4;
+  color: var(--fg);
+  min-height: 100vh;
+}
 
-    /* Top Navigation Header */
-    .menu-options {
-        display: flex;
-        justify-content: flex-end;
-        gap: 20px;
-        padding: 20px 5%;
-        position: relative;
-        z-index: 10;
-    }
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 2rem; height: 58px; padding: 0 2.2rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(250, 248, 244, 0.85);
+  backdrop-filter: blur(14px);
+}
 
-    .menu-options a {
-        color: white;
-        text-decoration: none;
-        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-        font-weight: bold;
-        transition: transform 0.2s, opacity 0.2s, color 0.2s;
-    }
+.topbar a {
+  font-size: 0.72rem; letter-spacing: 0.11em; text-transform: uppercase;
+  font-weight: 500; color: var(--dim); text-decoration: none;
+  transition: color 0.2s; white-space: nowrap;
+}
 
-    .menu-options a:hover,
-    .menu-options a.active {
-        color: #ffcb05; /* UMich Maize accent color */
-        transform: translateY(-2px);
-    }
+.topbar a:hover, .topbar a.active { color: var(--accent); }
 
-    /* Hero Headings */
-    header {
-        text-align: center;
-        margin-bottom: 40px;
-        padding: 0 20px;
-    }
+.dk {
+  font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--dim); display: block; margin-bottom: 0.5rem;
+}
 
-    h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        margin-bottom: 10px;
-        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
+.ed { max-width: 1080px; margin: 0 auto; padding: 4.5rem 2.2rem 4rem; }
 
-    h2 {
-        font-size: clamp(1.2rem, 2.5vw, 2rem);
-        font-weight: 300;
-        color: #e0e0e0;
-        line-height: 1.4;
-    }
+.ed-masthead { padding-bottom: 0.6rem; }
 
-    /* Layout Split Container */
-    .profile-dashboard {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
-        gap: 40px;
-        align-items: start;
-        padding: 0 20px;
-    }
+.ed-kicker {
+  font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dim); display: flex; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.6rem;
+}
 
-    /* Glassmorphism Card Style */
-    .card {
-        background-color: rgba(0, 39, 76, 0.85);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 35px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(8px);
-    }
+.ed-masthead h1 {
+  font-size: clamp(3.4rem, 11vw, 7.4rem); font-weight: 600;
+  letter-spacing: -0.055em; line-height: 0.9; margin-top: 1.1rem;
+}
 
-    .gpa-banner {
-        font-size: clamp(1.3rem, 2vw, 1.8rem);
-        font-weight: bold;
-        color: #ffcb05;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 15px;
-        margin-bottom: 25px;
-    }
+.ed-deck {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.5rem; margin-top: 1.6rem;
+}
 
-    .section-title {
-        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-        margin-bottom: 15px;
-        color: #add8e6;
-    }
+.ed-deck div { font-size: 0.92rem; line-height: 1.55; }
+.ed-deck .dk { font-size: 0.58rem; letter-spacing: 0.16em; }
 
-    /* Nested Academic Lists */
-    .course-tree {
-        list-style-type: none;
-    }
+.ed-figures {
+  display: grid; grid-template-columns: 290px 1fr;
+  gap: 2.8rem; margin: 3rem 0 1rem; align-items: start;
+}
 
-    .course-tree > li {
-        font-weight: bold;
-        margin-top: 15px;
-        font-size: 1.1rem;
-        color: #fff;
-    }
+.ed-portrait { border: 1px solid var(--line); }
+.ed-portrait img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
 
-    .course-tree ul {
-        list-style-type: square;
-        margin-left: 25px;
-        margin-top: 5px;
-    }
+.ed-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.4rem; }
+.ed-stat { border-top: 1px solid var(--line); padding-top: 0.8rem; }
+.ed-stat .v { font-size: clamp(2.2rem, 4.6vw, 3.1rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+.ed-stat .l { font-size: 0.57rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-top: 0.6rem; }
 
-    .course-tree li li {
-        font-weight: normal;
-        font-size: 1rem;
-        margin-bottom: 6px;
-        color: #d1e6ff;
-    }
+.ed-honors { margin-top: 2rem; font-size: 1.05rem; line-height: 1.65; color: var(--body); font-weight: 300; max-width: 52ch; }
 
-    /* Right Column Profile Setup */
-    .profile-sidebar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-    }
+.ed-sec {
+  display: grid; grid-template-columns: 8.5rem 1fr; gap: 2.4rem;
+  padding: 2.8rem 0; border-top: 1px solid var(--line);
+}
 
-    .avatar-container {
-        width: 100%;
-        max-width: 320px;
-        aspect-ratio: 1 / 1;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 6px solid #ffcb05;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    }
+.ed-sec-label {
+  font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--dim); position: sticky; top: 78px; align-self: start;
+}
 
-    .avatar-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.ed-entry + .ed-entry { margin-top: 2.4rem; padding-top: 2.4rem; border-top: 1px solid var(--line); }
 
-    /* Programming Languages Layout */
-    .languages-grid {
-        width: 100%;
-    }
+.ed-entry h3 { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.14; }
+.ed-entry h3 a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color 0.2s, color 0.2s; }
+.ed-entry h3 a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-    .languages-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 10px;
-        list-style: none;
-        margin-top: 10px;
-    }
+.ed-meta {
+  font-size: 0.6rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--dim); margin-top: 0.6rem; display: flex; gap: 1.1rem; flex-wrap: wrap;
+}
 
-    .languages-list li {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 8px 12px;
-        border-radius: 8px;
-        text-align: center;
-        font-size: 0.95rem;
-        transition: background 0.2s;
-    }
+.ed-body { font-size: 1rem; line-height: 1.75; color: var(--body); margin-top: 1rem; max-width: 62ch; }
 
-    .languages-list li:hover {
-        background: rgba(255, 255, 205, 0.15);
-        border-color: #ffcb05;
-    }
+.bullets { list-style: none; margin-top: 1.2rem; max-width: 66ch; }
 
-    .japanese-text {
-        font-size: 1.1rem;
-        text-align: center;
-        margin-top: 10px;
-        color: #c4e1ff;
-        font-style: italic;
-    }
+.bullets li {
+  position: relative; padding-left: 1.4rem; margin-bottom: 0.9rem;
+  font-size: 0.97rem; line-height: 1.7; color: var(--body); font-weight: 300;
+}
 
-    /* Footer & Social Icons */
-    footer {
-        text-align: center;
-        margin-top: 60px;
-        padding-bottom: 40px;
-    }
+.bullets li:last-child { margin-bottom: 0; }
 
-    footer p {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-        font-weight: bold;
-    }
+.bullets li::before {
+  content: ''; position: absolute; left: 0.15rem; top: 0.72em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.7;
+}
 
-    .icon-row {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
+.ed-cols { column-count: 2; column-gap: 2.4rem; }
+.ed-cols .ed-orgitem { break-inside: avoid; margin-bottom: 1.7rem; }
+.ed-orgitem h4 { font-size: 1rem; font-weight: 600; }
+.ed-orgitem .r { font-size: 0.58rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--accent); margin-top: 0.3rem; }
+.ed-orgitem p { font-size: 0.9rem; line-height: 1.6; color: #55545e; margin-top: 0.5rem; }
 
-    .icon-row a {
-        transition: transform 0.2s, filter 0.2s;
-    }
+.ed-skill + .ed-skill { margin-top: 1.5rem; }
+.ed-skill .dk { font-size: 0.58rem; letter-spacing: 0.16em; margin-bottom: 0.55rem; }
+.ed-skill p { font-size: 0.97rem; line-height: 1.7; }
 
-    .icon-row img {
-        border-radius: 8px;
-        transition: all 0.2s;
-    }
+.ed-course { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2.2rem; }
 
-    .icon-row a:hover {
-        transform: translateY(-5px);
-        filter: drop-shadow(0 4px 8px rgba(255, 203, 5, 0.5));
-    }
+.course-line {
+  display: flex; align-items: baseline; gap: 0.7rem;
+  padding: 0.55rem 0; border-bottom: 1px solid var(--line);
+  font-size: 0.9rem; font-weight: 300; color: var(--body);
+}
 
-    .contact-strip {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px 28px;
-        margin-top: 20px;
-        font-size: clamp(0.85rem, 1.3vw, 1rem);
-    }
+.course-line:last-child { border-bottom: none; }
+.course-line .cc { font-size: 0.62rem; letter-spacing: 0.06em; min-width: 5.4rem; color: var(--dim); white-space: nowrap; }
+.course-line .cg { margin-left: auto; font-size: 0.78rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+.course-line .cg.wip { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.09em; text-transform: uppercase; color: var(--dim); }
 
-    .contact-strip a,
-    .contact-strip span {
-        color: #c4e1ff;
-        text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: color 0.2s, border-color 0.2s;
-    }
+.foot {
+  border-top: 1px solid var(--line);
+  padding: 2.6rem 1.6rem 3.4rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1.1rem;
+}
 
-    .contact-strip a:hover {
-        color: #ffcb05;
-        border-bottom-color: #ffcb05;
-    }
+.foot-label { font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+.foot-icons { display: flex; gap: 1.2rem; }
+.foot-icons a { display: inline-flex; opacity: 0.72; transition: opacity 0.2s, transform 0.2s; }
+.foot-icons a:hover { opacity: 1; transform: translateY(-4px); }
 
-    .column-stack {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        min-width: 0;
-    }
+@media (max-width: 800px) {
+  .ed { padding: 3rem 1.4rem 3rem; }
+  .ed-figures { grid-template-columns: 1fr; }
+  .ed-portrait { max-width: 280px; }
+  .ed-sec { grid-template-columns: 1fr; gap: 1.2rem; }
+  .ed-sec-label { position: static; }
+  .ed-cols { column-count: 1; }
+}
 
-    .entry + .entry {
-        margin-top: 26px;
-        padding-top: 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .entry-head {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 4px 16px;
-    }
-
-    .entry-title {
-        font-size: 1.15rem;
-        font-weight: bold;
-        color: #fff;
-    }
-
-    .entry-title a {
-        color: #fff;
-        text-decoration: none;
-        border-bottom: 2px solid rgba(255, 203, 5, 0.45);
-        transition: color 0.2s, border-color 0.2s;
-    }
-
-    .entry-title a:hover {
-        color: #ffcb05;
-        border-bottom-color: #ffcb05;
-    }
-
-    .entry-meta {
-        font-size: 0.9rem;
-        color: #ffcb05;
-        white-space: nowrap;
-    }
-
-    .entry-sub {
-        font-size: 1rem;
-        color: #add8e6;
-        margin-top: 3px;
-    }
-
-    .entry-body {
-        margin-top: 10px;
-        color: #d1e6ff;
-        line-height: 1.6;
-    }
-
-    .bullets {
-        list-style-type: square;
-        margin: 12px 0 0 22px;
-    }
-
-    .bullets li {
-        color: #d1e6ff;
-        line-height: 1.55;
-        margin-bottom: 9px;
-    }
-
-    .bullets li:last-child {
-        margin-bottom: 0;
-    }
-
-    .chip-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        list-style: none;
-        margin-top: 14px;
-    }
-
-    .chip-row li {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 6px 13px;
-        border-radius: 999px;
-        font-size: 0.9rem;
-        color: #d1e6ff;
-    }
-
-    .skill-group + .skill-group {
-        margin-top: 18px;
-    }
-
-    .skill-label {
-        display: block;
-        font-size: 0.8rem;
-        letter-spacing: 0.07em;
-        text-transform: uppercase;
-        color: #add8e6;
-    }
-
-    .skill-group .chip-row {
-        margin-top: 9px;
-    }
-
-    /* Responsive Adaptation */
-    @media (max-width: 850px) {
-        .profile-dashboard {
-            grid-template-columns: 1fr;
-        }
-        .profile-sidebar {
-            grid-row: 1; /* Moves photo to the top on mobile layouts */
-        }
-        .menu-options {
-            justify-content: center;
-        }
-    }
-  </style>
+@media (max-width: 620px) {
+  .topbar { justify-content: center; flex-wrap: wrap; gap: 1.1rem; height: auto; padding: 0.8rem 1rem; position: static; }
+}
+</style>
 </head>
-  
 <body>
 
-  <canvas id="networkCanvas"></canvas>
+<nav class="topbar">
+  <a href="index.html">Home</a>
+  <a href="HAI.html">Old Tech</a>
+  <a href="music.html">Music</a>
+  <a href="projects.html">Projects</a>
+  <a href="aboutMe.html" class="active">About</a>
+</nav>
 
-  <nav class="menu-options">
-    <a href="index.html">Home</a>
-    <a href="HAI.html">Old Tech</a>
-    <a href="music.html">Music</a>
-    <a href="projects.html">Projects</a>
-    <a href="aboutMe.html" class="active">About Me</a>
-  </nav>
+<div class="ed">
 
-  <header>
-    <h1>About: Me</h1>
-    <h2>A University of Michigan Student Studying<br>Computer Science and Economics</h2>
-    <div class="contact-strip">
-      <a href="mailto:ethantilak@gmail.com">ethantilak@gmail.com</a>
-      <a href="https://linkedin.com/in/ethan-tilak" target="_blank" rel="noopener">linkedin.com/in/ethan-tilak</a>
-      <a href="https://github.com/tilake280" target="_blank" rel="noopener">github.com/tilake280</a>
+  <div class="ed-masthead">
+    <div class="ed-kicker">
+      <span>Ann Arbor, Michigan</span>
+      <span>Expected May 2028</span>
     </div>
-  </header>
-
-  <main class="profile-dashboard">
-
-    <div class="column-stack">
-
-      <section class="card">
-        <h3 class="section-title">Education</h3>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title">University of Michigan, Ann Arbor</span>
-            <span class="entry-meta">Expected May 2028</span>
-          </div>
-          <p class="entry-sub">B.S. Computer Science and Economics &middot; Ross School of Business Minor</p>
-          <div class="gpa-banner" style="margin-top: 18px;">Cumulative GPA: 3.98 / 4.00</div>
-          <ul class="chip-row" style="margin-top: 0;">
-            <li>William J. Branstrom Freshman Prize &mdash; top 5% of class</li>
-            <li>James B. Angell Scholar</li>
-            <li>University Honors, 4 semesters</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3 class="section-title">Work Experience</h3>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title">Accenture &mdash; Boston, MA</span>
-            <span class="entry-meta">Summer 2026</span>
-          </div>
-          <p class="entry-sub">Tech Architecture Intern</p>
-          <ul class="bullets">
-            <li>Automated enrichment of Collibra's data catalog with a Python + Snowflake workflow that programmatically generated and inserted SharePoint asset links across 30+ records, replacing a manual process with 100% accuracy</li>
-            <li>Engineered programmatic sanitization guardrails within the extraction workflow, masking PII and ensuring zero exposure of sensitive data to enterprise LLMs</li>
-            <li>Wrote validation and audit scripts that automatically checked every generated link against its source record, catching discrepancies before deployment and ensuring full data integrity</li>
-            <li>Designed the full-stack system architecture and supply chain routing logic for a conceptual reverse-logistics C2C marketplace; awarded recognition out of 30+ teams and pitched to an audience of 400+</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3 class="section-title">Projects</h3>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title"><a href="https://github.com/tilake280/sentinel-sast" target="_blank" rel="noopener">Sentinel</a></span>
-            <span class="entry-meta">C++23</span>
-          </div>
-          <p class="entry-body">Built a 4,200-line C++23 static-analysis engine that traces taint from untrusted input to dangerous sinks across JavaScript, Python, and Go, detecting 8 vulnerability classes via AST matching and fixpoint dataflow propagation. Designed the dataflow model and false-positive filtering; used Claude Code to expand coverage and validate across 300+ scans.</p>
-        </div>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title"><a href="https://github.com/tilake280/ML-Alzheimers-Detector" target="_blank" rel="noopener">Alzheimer's Disease Machine Learning Classifier</a></span>
-            <span class="entry-meta">PyTorch</span>
-          </div>
-          <p class="entry-body">Trained a ResNet-18 CNN (PyTorch, Torchvision) to 95% accuracy on an 8,400-image MRI dataset, using transfer learning and augmentation to classify disease stage across 4 classes.</p>
-        </div>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title"><a href="projects.html">NLP Tag Classifier</a></span>
-            <span class="entry-meta">C++</span>
-          </div>
-          <p class="entry-body">Implemented a bag-of-words text classifier from scratch in C++ that categorized 11,000+ forum posts at 87% accuracy, with custom tokenization and log-probability scoring, using no external ML libraries.</p>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3 class="section-title">Leadership and Campus Involvement</h3>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title">Michigan Hackers</span>
-          </div>
-          <p class="entry-sub">Quant Team Software Engineer</p>
-          <p class="entry-body">Build Python predictive-trading models (Pandas, NumPy, ML) on market data.</p>
-        </div>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title">Michigan Data Science Team</span>
-          </div>
-          <p class="entry-sub">Alzheimer's Prediction Data Analyst</p>
-          <p class="entry-body">Build regression and random-forest models to predict Alzheimer's onset.</p>
-        </div>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title">IEEE-HKN Honor Society</span>
-          </div>
-          <p class="entry-sub">Events Officer</p>
-          <p class="entry-body">Plan chapter events, manage budgets and cross-department logistics.</p>
-        </div>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title">Gift of Life Bone Marrow Registry</span>
-          </div>
-          <p class="entry-sub">Campus Ambassador</p>
-          <p class="entry-body">Recruited 200+ donor registrants in one week; organize swabbing drives.</p>
-        </div>
-        <div class="entry">
-          <div class="entry-head">
-            <span class="entry-title">Model Federal Open Market Committee (MFED)</span>
-          </div>
-          <p class="entry-sub">Research Analyst</p>
-          <p class="entry-body">Wrote a paper on U.S. foreign aid's long-term effects on Ethiopian economic growth based on market research.</p>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3 class="section-title">Relevant Courses and Grades</h3>
-        <ul class="course-tree">
-          <li>Computer Science Courses
-            <ul>
-              <li>Data Structures and Algorithms (EECS 281) - A+</li>
-              <li>Intro to Computer Security (EECS 388) - A</li>
-              <li>Discrete Math (EECS 203) - A</li>
-              <li>Programming and Introductory Data Structures (EECS 280) - A</li>
-              <li>Fundamentals of Scientific Computing in R (Compfor 133) - A</li>
-            </ul>
-          </li>
-          <li>Economics Courses
-            <ul>
-              <li>Multivariable & Vector Calculus (Math 215) - A</li>
-              <li>Intermediate Microeconomic Theory (Econ 401) - A</li>
-              <li>Introductory Microeconomic Theory (Econ 101) - A+</li>
-              <li>Introductory Macroeconomic Theory (Econ 102) - A</li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="chip-row">
-          <li>Web Systems</li>
-          <li>Database Management Systems</li>
-          <li>Computer Organization</li>
-          <li>Linear Algebra</li>
-        </ul>
-      </section>
-
+    <h1>Ethan Tilak</h1>
+    <div class="ed-deck">
+      <div><span class="dk">Major</span>B.S. Computer Science and Economics</div>
+      <div><span class="dk">Minor</span>Ross School of Business</div>
+      <div><span class="dk">University</span>University of Michigan, Ann Arbor</div>
+      <div><span class="dk">Email</span><a href="mailto:ethantilak@gmail.com" style="color:var(--accent)">ethantilak@gmail.com</a></div>
     </div>
+  </div>
 
-    <section class="profile-sidebar">
-      <div class="avatar-container">
-        <img src="assets/images/tempHomeMenuImg.jpg" alt="Ethan Tilak Headshot Image">
+  <div class="ed-figures">
+    <figure class="ed-portrait">
+      <img src="assets/images/tempHomeMenuImg.jpg" alt="Ethan Tilak">
+    </figure>
+    <div>
+      <div class="ed-stats">
+        <div class="ed-stat"><div class="v">3.98</div><div class="l">GPA / 4.00</div></div>
+        <div class="ed-stat"><div class="v">Top 5%</div><div class="l">Branstrom Prize</div></div>
+        <div class="ed-stat"><div class="v">4</div><div class="l">Semesters Honors</div></div>
       </div>
-
-      <div class="card languages-grid">
-        <h3 class="section-title">Languages & Technologies</h3>
-
-        <div class="skill-group">
-          <span class="skill-label">Languages</span>
-          <ul class="chip-row">
-            <li>Python</li>
-            <li>C / C++23</li>
-            <li>Kotlin</li>
-            <li>JavaScript / TypeScript</li>
-            <li>Java</li>
-            <li>Go</li>
-            <li>SQL</li>
-            <li>R</li>
-            <li>PHP</li>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Shell</li>
-            <li>Assembly</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <span class="skill-label">Web &amp; Backend</span>
-          <ul class="chip-row">
-            <li>React</li>
-            <li>Node.js</li>
-            <li>FastAPI</li>
-            <li>REST / JSON APIs</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <span class="skill-label">ML &amp; Data</span>
-          <ul class="chip-row">
-            <li>PyTorch</li>
-            <li>Torchvision</li>
-            <li>Pandas</li>
-            <li>NumPy</li>
-            <li>scikit-learn</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <span class="skill-label">Databases &amp; Cloud</span>
-          <ul class="chip-row">
-            <li>AWS</li>
-            <li>Azure</li>
-            <li>Snowflake</li>
-            <li>PostgreSQL / pgvector</li>
-            <li>MySQL</li>
-            <li>SQLite</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <span class="skill-label">Systems &amp; Tools</span>
-          <ul class="chip-row">
-            <li>Git</li>
-            <li>Docker</li>
-            <li>Tree-sitter</li>
-            <li>GDB</li>
-            <li>Ghidra</li>
-            <li>Postman</li>
-            <li>Linux / WSL</li>
-            <li>Claude Code</li>
-            <li>Codex</li>
-          </ul>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0 15px 0;">
-        <p class="japanese-text">そして、N4/N3の日本語がはなせます。</p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>Let's Connect!</p>
-    <div class="icon-row">
-      <a href="https://www.linkedin.com/in/ethan-tilak" target="_blank" rel="noopener"><img src="assets/icons/linkedinIcon.png" alt="LinkedIn" width="40" height="40"></a>
-      <a href="https://www.instagram.com/ethan_tilak1" target="_blank" rel="noopener"><img src="assets/icons/instagramIcon.webp" alt="Instagram" width="40" height="40"></a>
-      <a href="mailto:ethantilak@gmail.com"><img src="assets/icons/Gmail_icon_.webp" alt="Gmail" width="40" height="35"></a>
-      <a href="https://github.com/tilake280" target="_blank" rel="noopener"><img src="assets/icons/githubLogo.png" alt="GitHub" width="40" height="40"></a>
+      <p class="ed-honors">William J. Branstrom Freshman Prize (top 5% of class); James B. Angell Scholar; University Honors, 4 semesters.</p>
     </div>
-  </footer>
+  </div>
 
-  <script>
-    const canvas = document.getElementById('networkCanvas');
-    const ctx = canvas.getContext('2d');
+  <section class="ed-sec">
+    <div class="ed-sec-label">Experience</div>
+    <div>
+      <div class="ed-entry">
+        <h3>Accenture, Boston, MA</h3>
+        <div class="ed-meta"><span>Tech Architecture Intern</span><span>Summer 2026</span></div>
+        <ul class="bullets">
+          <li>Automated enrichment of Collibra's data catalog with a Python + Snowflake workflow that programmatically generated and inserted SharePoint asset links across 30+ records, replacing a manual process with 100% accuracy</li>
+          <li>Engineered programmatic sanitization guardrails within the extraction workflow, masking PII and ensuring zero exposure of sensitive data to enterprise LLMs</li>
+          <li>Wrote validation and audit scripts that automatically checked every generated link against its source record, catching discrepancies before deployment and ensuring full data integrity</li>
+          <li>Designed the full-stack system architecture and supply chain routing logic for a conceptual reverse-logistics C2C marketplace; awarded recognition out of 30+ teams and pitched to an audience of 400+</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+  <section class="ed-sec">
+    <div class="ed-sec-label">Projects</div>
+    <div>
+      <div class="ed-entry">
+        <h3><a href="https://github.com/tilake280/sentinel-sast" target="_blank" rel="noopener">Sentinel</a></h3>
+        <div class="ed-meta"><span>C++23</span><span>Static Analysis</span></div>
+        <p class="ed-body">Built a 4,200-line C++23 static-analysis engine that traces taint from untrusted input to dangerous sinks across JavaScript, Python, and Go, detecting 8 vulnerability classes via AST matching and fixpoint dataflow propagation. Designed the dataflow model and false-positive filtering; used Claude Code to expand coverage and validate across 300+ scans.</p>
+      </div>
+      <div class="ed-entry">
+        <h3><a href="https://github.com/tilake280/ML-Alzheimers-Detector" target="_blank" rel="noopener">Alzheimer's Disease Machine Learning Classifier</a></h3>
+        <div class="ed-meta"><span>PyTorch</span><span>Torchvision</span></div>
+        <p class="ed-body">Trained a ResNet-18 CNN (PyTorch, Torchvision) to 95% accuracy on an 8,400-image MRI dataset, using transfer learning and augmentation to classify disease stage across 4 classes.</p>
+      </div>
+      <div class="ed-entry">
+        <h3><a href="projects.html">NLP Classifier</a></h3>
+        <div class="ed-meta"><span>C++</span><span>87% accuracy</span></div>
+        <p class="ed-body">Implemented a bag-of-words text classifier from scratch in C++ that categorized 11,000+ forum posts at 87% accuracy, with custom tokenization and log-probability scoring, using no external ML libraries.</p>
+      </div>
+    </div>
+  </section>
 
-    // Create algorithmic / market nodes
-    const nodes = [];
-    const nodeCount = 45;
-    
-    for (let i = 0; i < nodeCount; i++) {
-        nodes.push({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            vx: (Math.random() - 0.5) * 0.6,
-            vy: (Math.random() - 0.5) * 0.6,
-            radius: Math.random() * 2 + 1.5
-        });
-    }
+  <section class="ed-sec">
+    <div class="ed-sec-label">Involvement</div>
+    <div class="ed-cols">
+      <div class="ed-orgitem">
+        <h4>Michigan Hackers</h4>
+        <p class="r">Quant Team Software Engineer</p>
+        <p>Build Python predictive-trading models (Pandas, NumPy, ML) on market data</p>
+      </div>
+      <div class="ed-orgitem">
+        <h4>Michigan Data Science Team</h4>
+        <p class="r">Alzheimer's Prediction Data Analyst</p>
+        <p>Build regression / random-forest models to predict Alzheimer's onset</p>
+      </div>
+      <div class="ed-orgitem">
+        <h4>IEEE-HKN Honor Society</h4>
+        <p class="r">Events Officer</p>
+        <p>Plan chapter events, manage budgets and cross-department logistics</p>
+      </div>
+      <div class="ed-orgitem">
+        <h4>Gift of Life Bone Marrow Registry</h4>
+        <p class="r">Campus Ambassador</p>
+        <p>Recruited 200+ donor registrants in one week; organize swabbing drives</p>
+      </div>
+      <div class="ed-orgitem">
+        <h4>Model Federal Open Market Committee</h4>
+        <p class="r">Research Analyst</p>
+        <p>Wrote paper regarding U.S. foreign aid's long-term effects on Ethiopian economic growth based on market research</p>
+      </div>
+    </div>
+  </section>
 
-    function animate() {
-        // Keeps background fixed to a deep UMich blue aesthetic
-        ctx.fillStyle = '#00274C';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+  <section class="ed-sec">
+    <div class="ed-sec-label">Skills</div>
+    <div>
+      <div class="ed-skill"><span class="dk">Languages</span><p>Python · C/C++23 · Kotlin · HTML · CSS · JavaScript/TypeScript · Java · SQL · Go · R · PHP · Shell Scripts · Assembly</p></div>
+      <div class="ed-skill"><span class="dk">Web &amp; Backend</span><p>React · Node.js · FastAPI · REST/JSON APIs</p></div>
+      <div class="ed-skill"><span class="dk">ML &amp; Data</span><p>PyTorch · Torchvision · Pandas · NumPy · scikit-learn</p></div>
+      <div class="ed-skill"><span class="dk">Databases &amp; Cloud</span><p>AWS · PostgreSQL/pgvector · MySQL · SQLite · Snowflake · Azure</p></div>
+      <div class="ed-skill"><span class="dk">Systems &amp; Tools</span><p>Git · Docker · Tree-sitter · GDB · Ghidra · Postman · Linux/WSL · Claude Code · Codex</p></div>
+    </div>
+  </section>
 
-        // Update positions & draw points
-        nodes.forEach(node => {
-            node.x += node.vx;
-            node.y += node.vy;
+  <section class="ed-sec">
+    <div class="ed-sec-label">Coursework</div>
+    <div>
+      <div class="ed-course">
+        <div>
+          <div class="course-line"><span class="cc">EECS 281</span> Data Structures &amp; Algorithms <span class="cg">A+</span></div>
+          <div class="course-line"><span class="cc">EECS 388</span> Computer Security <span class="cg">A</span></div>
+          <div class="course-line"><span class="cc">EECS 370</span> Computer Organization <span class="cg">A-</span></div>
+          <div class="course-line"><span class="cc">EECS 280</span> Prog. &amp; Intro Data Structures <span class="cg">A</span></div>
+          <div class="course-line"><span class="cc">EECS 203</span> Discrete Math <span class="cg">A</span></div>
+          <div class="course-line"><span class="cc">EECS 201</span> Computer Science Pragmatics <span class="cg">A</span></div>
+        </div>
+        <div>
+          <div class="course-line"><span class="cc">COMPFOR 133</span> Scientific Computing in R <span class="cg">A</span></div>
+          <div class="course-line"><span class="cc">ECON 401</span> Intermediate Microecon Theory <span class="cg">A</span></div>
+          <div class="course-line"><span class="cc">ECON 101</span> Introductory Microecon Theory <span class="cg">A+</span></div>
+          <div class="course-line"><span class="cc">ECON 102</span> Introductory Macroecon Theory <span class="cg">A</span></div>
+          <div class="course-line"><span class="cc">MATH 215</span> Multivariable &amp; Vector Calculus <span class="cg">A</span></div>
+          <div class="course-line"><span class="cc">MATH 214</span> Linear Algebra <span class="cg">A</span></div>
+        </div>
+      </div>
+      <div style="margin-top:2rem">
+        <span class="dk">Currently Taking</span>
+        <div class="course-line" style="margin-top:0.6rem"><span class="cc">EECS 485</span> Web Systems <span class="cg wip">In progress</span></div>
+        <div class="course-line"><span class="cc">EECS 484</span> Database Management Systems <span class="cg wip">In progress</span></div>
+      </div>
+    </div>
+  </section>
 
-            // Simple screen boundary checks
-            if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-            if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+</div>
 
-            ctx.beginPath();
-            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 203, 5, 0.35)'; // Faint Maize points
-            ctx.fill();
-        });
-
-        // Draw connections between proximate nodes to visualize structured pipelines
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-                if (dist < 120) {
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(nodes[j].x, nodes[j].y);
-                    // Proximity mapping changes opacity
-                    ctx.strokeStyle = `rgba(173, 216, 230, ${0.15 * (1 - dist / 120)})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
+<div class="foot">
+  <span class="foot-label">Let's connect</span>
+  <div class="foot-icons">
+    <a href="https://www.linkedin.com/in/ethan-tilak" target="_blank" rel="noopener"><img src="assets/icons/linkedinIcon.png" alt="LinkedIn" width="34" height="34"></a>
+    <a href="https://www.instagram.com/ethan_tilak1" target="_blank" rel="noopener"><img src="assets/icons/instagramIcon.webp" alt="Instagram" width="34" height="34"></a>
+    <a href="mailto:ethantilak@gmail.com"><img src="assets/icons/Gmail_icon_.webp" alt="Gmail" width="34" height="30"></a>
+    <a href="https://github.com/tilake280" target="_blank" rel="noopener"><img src="assets/icons/githubLogo.png" alt="GitHub" width="34" height="34"></a>
+  </div>
+</div>
 
 </body>
 </html>
