@@ -231,6 +231,133 @@
         filter: drop-shadow(0 4px 8px rgba(255, 203, 5, 0.5));
     }
 
+    .contact-strip {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 28px;
+        margin-top: 20px;
+        font-size: clamp(0.85rem, 1.3vw, 1rem);
+    }
+
+    .contact-strip a,
+    .contact-strip span {
+        color: #c4e1ff;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-strip a:hover {
+        color: #ffcb05;
+        border-bottom-color: #ffcb05;
+    }
+
+    .column-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    .entry + .entry {
+        margin-top: 26px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .entry-head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 4px 16px;
+    }
+
+    .entry-title {
+        font-size: 1.15rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .entry-title a {
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 2px solid rgba(255, 203, 5, 0.45);
+        transition: color 0.2s, border-color 0.2s;
+    }
+
+    .entry-title a:hover {
+        color: #ffcb05;
+        border-bottom-color: #ffcb05;
+    }
+
+    .entry-meta {
+        font-size: 0.9rem;
+        color: #ffcb05;
+        white-space: nowrap;
+    }
+
+    .entry-sub {
+        font-size: 1rem;
+        color: #add8e6;
+        margin-top: 3px;
+    }
+
+    .entry-body {
+        margin-top: 10px;
+        color: #d1e6ff;
+        line-height: 1.6;
+    }
+
+    .bullets {
+        list-style-type: square;
+        margin: 12px 0 0 22px;
+    }
+
+    .bullets li {
+        color: #d1e6ff;
+        line-height: 1.55;
+        margin-bottom: 9px;
+    }
+
+    .bullets li:last-child {
+        margin-bottom: 0;
+    }
+
+    .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        list-style: none;
+        margin-top: 14px;
+    }
+
+    .chip-row li {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 6px 13px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        color: #d1e6ff;
+    }
+
+    .skill-group + .skill-group {
+        margin-top: 18px;
+    }
+
+    .skill-label {
+        display: block;
+        font-size: 0.8rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #add8e6;
+    }
+
+    .skill-group .chip-row {
+        margin-top: 9px;
+    }
+
     /* Responsive Adaptation */
     @media (max-width: 850px) {
         .profile-dashboard {
@@ -261,34 +388,145 @@
   <header>
     <h1>About: Me</h1>
     <h2>A University of Michigan Student Studying<br>Computer Science and Economics</h2>
+    <div class="contact-strip">
+      <a href="mailto:ethantilak@gmail.com">ethantilak@gmail.com</a>
+      <a href="https://linkedin.com/in/ethan-tilak" target="_blank" rel="noopener">linkedin.com/in/ethan-tilak</a>
+      <a href="https://github.com/tilake280" target="_blank" rel="noopener">github.com/tilake280</a>
+    </div>
   </header>
 
   <main class="profile-dashboard">
-    
-    <section class="card">
-      <div class="gpa-banner">Cumulative GPA: 3.982</div>
-      
-      <h3 class="section-title">Relevant Courses and Grades</h3>
-      <ul class="course-tree">
-        <li>Computer Science Courses
-          <ul>
-            <li>Data Structures and Algorithms (EECS 281) - A+</li>
-            <li>Intro to Computer Security (EECS 388) - A</li>
-            <li>Discrete Math (EECS 203) - A</li>
-            <li>Programming and Introductory Data Structures (EECS 280) - A</li>
-            <li>Fundamentals of Scientific Computing in R (Compfor 133) - A</li>
+
+    <div class="column-stack">
+
+      <section class="card">
+        <h3 class="section-title">Education</h3>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">University of Michigan, Ann Arbor</span>
+            <span class="entry-meta">Expected May 2028</span>
+          </div>
+          <p class="entry-sub">B.S. Computer Science and Economics &middot; Ross School of Business Minor</p>
+          <div class="gpa-banner" style="margin-top: 18px;">Cumulative GPA: 3.98 / 4.00</div>
+          <ul class="chip-row" style="margin-top: 0;">
+            <li>William J. Branstrom Freshman Prize &mdash; top 5% of class</li>
+            <li>James B. Angell Scholar</li>
+            <li>University Honors, 4 semesters</li>
           </ul>
-        </li>
-        <li>Economics Courses
-          <ul>
-            <li>Multivariable & Vector Calculus (Math 215) - A</li>
-            <li>Intermediate Microeconomic Theory (Econ 401) - A</li>
-            <li>Introductory Microeconomic Theory (Econ 101) - A+</li>
-            <li>Introductory Macroeconomic Theory (Econ 102) - A</li>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="section-title">Work Experience</h3>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Accenture &mdash; Boston, MA</span>
+            <span class="entry-meta">Summer 2026</span>
+          </div>
+          <p class="entry-sub">Tech Architecture Intern</p>
+          <ul class="bullets">
+            <li>Automated enrichment of Collibra's data catalog with a Python + Snowflake workflow that programmatically generated and inserted SharePoint asset links across 30+ records, replacing a manual process with 100% accuracy</li>
+            <li>Engineered programmatic sanitization guardrails within the extraction workflow, masking PII and ensuring zero exposure of sensitive data to enterprise LLMs</li>
+            <li>Wrote validation and audit scripts that automatically checked every generated link against its source record, catching discrepancies before deployment and ensuring full data integrity</li>
+            <li>Designed the full-stack system architecture and supply chain routing logic for a conceptual reverse-logistics C2C marketplace; awarded recognition out of 30+ teams and pitched to an audience of 400+</li>
           </ul>
-        </li>
-      </ul>
-    </section>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="section-title">Projects</h3>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title"><a href="https://github.com/tilake280/sentinel-sast" target="_blank" rel="noopener">Sentinel</a></span>
+            <span class="entry-meta">C++23</span>
+          </div>
+          <p class="entry-body">Built a 4,200-line C++23 static-analysis engine that traces taint from untrusted input to dangerous sinks across JavaScript, Python, and Go, detecting 8 vulnerability classes via AST matching and fixpoint dataflow propagation. Designed the dataflow model and false-positive filtering; used Claude Code to expand coverage and validate across 300+ scans.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title"><a href="https://github.com/tilake280/ML-Alzheimers-Detector" target="_blank" rel="noopener">Alzheimer's Disease Machine Learning Classifier</a></span>
+            <span class="entry-meta">PyTorch</span>
+          </div>
+          <p class="entry-body">Trained a ResNet-18 CNN (PyTorch, Torchvision) to 95% accuracy on an 8,400-image MRI dataset, using transfer learning and augmentation to classify disease stage across 4 classes.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title"><a href="projects.html">NLP Tag Classifier</a></span>
+            <span class="entry-meta">C++</span>
+          </div>
+          <p class="entry-body">Implemented a bag-of-words text classifier from scratch in C++ that categorized 11,000+ forum posts at 87% accuracy, with custom tokenization and log-probability scoring, using no external ML libraries.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="section-title">Leadership and Campus Involvement</h3>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Michigan Hackers</span>
+          </div>
+          <p class="entry-sub">Quant Team Software Engineer</p>
+          <p class="entry-body">Build Python predictive-trading models (Pandas, NumPy, ML) on market data.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Michigan Data Science Team</span>
+          </div>
+          <p class="entry-sub">Alzheimer's Prediction Data Analyst</p>
+          <p class="entry-body">Build regression and random-forest models to predict Alzheimer's onset.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">IEEE-HKN Honor Society</span>
+          </div>
+          <p class="entry-sub">Events Officer</p>
+          <p class="entry-body">Plan chapter events, manage budgets and cross-department logistics.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Gift of Life Bone Marrow Registry</span>
+          </div>
+          <p class="entry-sub">Campus Ambassador</p>
+          <p class="entry-body">Recruited 200+ donor registrants in one week; organize swabbing drives.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Model Federal Open Market Committee (MFED)</span>
+          </div>
+          <p class="entry-sub">Research Analyst</p>
+          <p class="entry-body">Wrote a paper on U.S. foreign aid's long-term effects on Ethiopian economic growth based on market research.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="section-title">Relevant Courses and Grades</h3>
+        <ul class="course-tree">
+          <li>Computer Science Courses
+            <ul>
+              <li>Data Structures and Algorithms (EECS 281) - A+</li>
+              <li>Intro to Computer Security (EECS 388) - A</li>
+              <li>Discrete Math (EECS 203) - A</li>
+              <li>Programming and Introductory Data Structures (EECS 280) - A</li>
+              <li>Fundamentals of Scientific Computing in R (Compfor 133) - A</li>
+            </ul>
+          </li>
+          <li>Economics Courses
+            <ul>
+              <li>Multivariable & Vector Calculus (Math 215) - A</li>
+              <li>Intermediate Microeconomic Theory (Econ 401) - A</li>
+              <li>Introductory Microeconomic Theory (Econ 101) - A+</li>
+              <li>Introductory Macroeconomic Theory (Econ 102) - A</li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="chip-row">
+          <li>Web Systems</li>
+          <li>Database Management Systems</li>
+          <li>Computer Organization</li>
+          <li>Linear Algebra</li>
+        </ul>
+      </section>
+
+    </div>
 
     <section class="profile-sidebar">
       <div class="avatar-container">
@@ -297,16 +535,74 @@
 
       <div class="card languages-grid">
         <h3 class="section-title">Languages & Technologies</h3>
-        <ul class="languages-list">
-          <li>C++</li>
-          <li>C</li>
-          <li>Python</li>
-          <li>SQL</li>
-          <li>R Studio</li>
-          <li>Java</li>
-          <li>HTML</li>
-          <li>CSS</li>
-        </ul>
+
+        <div class="skill-group">
+          <span class="skill-label">Languages</span>
+          <ul class="chip-row">
+            <li>Python</li>
+            <li>C / C++23</li>
+            <li>Kotlin</li>
+            <li>JavaScript / TypeScript</li>
+            <li>Java</li>
+            <li>Go</li>
+            <li>SQL</li>
+            <li>R</li>
+            <li>PHP</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Shell</li>
+            <li>Assembly</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <span class="skill-label">Web &amp; Backend</span>
+          <ul class="chip-row">
+            <li>React</li>
+            <li>Node.js</li>
+            <li>FastAPI</li>
+            <li>REST / JSON APIs</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <span class="skill-label">ML &amp; Data</span>
+          <ul class="chip-row">
+            <li>PyTorch</li>
+            <li>Torchvision</li>
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>scikit-learn</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <span class="skill-label">Databases &amp; Cloud</span>
+          <ul class="chip-row">
+            <li>AWS</li>
+            <li>Azure</li>
+            <li>Snowflake</li>
+            <li>PostgreSQL / pgvector</li>
+            <li>MySQL</li>
+            <li>SQLite</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <span class="skill-label">Systems &amp; Tools</span>
+          <ul class="chip-row">
+            <li>Git</li>
+            <li>Docker</li>
+            <li>Tree-sitter</li>
+            <li>GDB</li>
+            <li>Ghidra</li>
+            <li>Postman</li>
+            <li>Linux / WSL</li>
+            <li>Claude Code</li>
+            <li>Codex</li>
+          </ul>
+        </div>
+
         <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0 15px 0;">
         <p class="japanese-text">そして、N4/N3の日本語がはなせます。</p>
       </div>
