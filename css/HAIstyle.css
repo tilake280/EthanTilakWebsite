@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url(rif/retroBackground.webp);
+    background-image: url(../assets/images/backgrounds/retroBackground.webp);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
