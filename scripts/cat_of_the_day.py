@@ -130,6 +130,22 @@ def git(*args):
     return subprocess.run(["git", "-C", REPO, *args], check=True, capture_output=True, text=True)
 
 
+def push_with_retry(attempts=3):
+    """The remote may have moved since checkout; rebase onto it and try again."""
+    branch = git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+    for attempt in range(1, attempts + 1):
+        try:
+            git("push", "origin", branch)
+            print("Pushed to origin.")
+            return
+        except subprocess.CalledProcessError:
+            if attempt == attempts:
+                raise
+            print(f"Push rejected (attempt {attempt}); rebasing onto origin/{branch} and retrying.")
+            git("fetch", "origin", branch)
+            git("rebase", f"origin/{branch}")
+
+
 def commit(today, push):
     paths = ["css/secret.css", "assets/images/backgrounds", "CAT_LOG.md"]
     git("add", "--all", "--", *paths)
@@ -139,8 +155,7 @@ def commit(today, push):
     git("commit", "-m", f"Cat of the day: {today}")
     print(f"Committed cat of the day for {today}.")
     if push:
-        git("push")
-        print("Pushed to origin.")
+        push_with_retry()
 
 
 def main():
