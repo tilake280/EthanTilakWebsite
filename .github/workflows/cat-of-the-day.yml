@@ -1,0 +1,35 @@
+name: Cat of the Day
+
+on:
+  schedule:
+    # 13:00 UTC daily (~9am ET). GitHub may delay scheduled runs under load.
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cat-of-the-day
+  cancel-in-progress: false
+
+jobs:
+  new-cat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Authored as Ethan so the commit lands on the contribution graph.
+      - name: Configure git
+        run: |
+          git config user.name "Ethan Tilak"
+          git config user.email "ethantilak@gmail.com"
+
+      - name: Fetch today's cat
+        env:
+          CAT_API_KEY: ${{ secrets.CAT_API_KEY }}
+        run: python3 scripts/cat_of_the_day.py --commit --push
