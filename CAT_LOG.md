@@ -43,3 +43,4 @@ A log of every cat that has served as the secret Eva page background.
 - 2026-09-14 - [TheCatAPI (1080x1076)](https://s3.us-west-2.amazonaws.com/cdn2.thecatapi.com/images/aWVfoSN_K.jpg)
 - 2026-09-15 - [TheCatAPI (1800x2700)](https://s3.us-west-2.amazonaws.com/cdn2.thecatapi.com/images/O1X8xKt_H.jpg)
 - 2026-09-16 - [TheCatAPI (1280x720)](https://s3.us-west-2.amazonaws.com/cdn2.thecatapi.com/images/r5FkDFDre.jpg)
+- 2026-09-17 - [TheCatAPI (1800x1592)](https://s3.us-west-2.amazonaws.com/cdn2.thecatapi.com/images/eF3HSMIB_.jpg)
