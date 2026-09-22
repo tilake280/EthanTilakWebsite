@@ -3,7 +3,7 @@
 
 Pulls a batch of candidates from an open cat API, keeps the highest-resolution
 one (a background wants pixels), saves it into assets/images/backgrounds/, and
-rewrites the background rule in css/secret.css with a dated cache-buster.
+rewrites the background rule in css/eva-style.css with a dated cache-buster.
 
 Stdlib only, so it runs anywhere Python 3 does -- no pip install in CI.
 
@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSS_FILE = os.path.join(REPO, "css", "secret.css")
+CSS_FILE = os.path.join(REPO, "css", "eva-style.css")
 BACKGROUNDS = os.path.join(REPO, "assets", "images", "backgrounds")
 LOG_FILE = os.path.join(REPO, "CAT_LOG.md")
 IMAGE_STEM = "cat-of-the-day"
@@ -147,7 +147,7 @@ def push_with_retry(attempts=3):
 
 
 def commit(today, push):
-    paths = ["css/secret.css", "assets/images/backgrounds", "CAT_LOG.md"]
+    paths = ["css/eva-style.css", "assets/images/backgrounds", "CAT_LOG.md"]
     git("add", "--all", "--", *paths)
     if not git("status", "--porcelain", "--", *paths).stdout.strip():
         print("Nothing changed, skipping commit.")
